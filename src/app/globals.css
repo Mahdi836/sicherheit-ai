@@ -477,10 +477,6 @@ nav.scrolled {
   background-size: 28px 28px;
 }
 
-/* ─── Custom cursor (desktop only) ─── */
-@media (pointer: fine) {
-  body.custom-cursor, body.custom-cursor * { cursor: none !important; }
-}
 
 /* ─── Mobile menu ─── */
 .mobile-nav-overlay {
