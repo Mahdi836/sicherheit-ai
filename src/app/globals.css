@@ -255,3 +255,145 @@ nav.scrolled {
 .card-img-inner {
   transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
 }
+
+/* ─── Newsletter CSS-only particles ─── */
+@keyframes fp1 {
+  0%,100% { transform: translateY(0px) translateX(0px); opacity: 0.15; }
+  33%      { transform: translateY(-28px) translateX(12px); opacity: 0.28; }
+  66%      { transform: translateY(-12px) translateX(-9px); opacity: 0.10; }
+}
+@keyframes fp2 {
+  0%,100% { transform: translateY(0px) translateX(0px); opacity: 0.20; }
+  50%     { transform: translateY(-40px) translateX(-16px); opacity: 0.08; }
+}
+@keyframes fp3 {
+  0%,100% { transform: translateY(0px) translateX(0px); opacity: 0.12; }
+  25%     { transform: translateY(-18px) translateX(20px); opacity: 0.25; }
+  75%     { transform: translateY(-30px) translateX(-4px); opacity: 0.14; }
+}
+@keyframes fp4 {
+  0%,100% { transform: translateY(0px); opacity: 0.18; }
+  40%     { transform: translateY(-35px) translateX(8px); opacity: 0.30; }
+  80%     { transform: translateY(-10px) translateX(-12px); opacity: 0.10; }
+}
+@keyframes fp5 {
+  0%,100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.15; }
+  50%     { transform: translateY(-22px) translateX(18px) scale(1.3); opacity: 0.24; }
+}
+
+.nl-particle { position: absolute; border-radius: 50%; pointer-events: none; }
+
+/* ─── Newsletter animated conic border ─── */
+@property --nl-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes nl-spin { to { --nl-angle: 360deg; } }
+
+.nl-border-wrap {
+  position: relative;
+  border-radius: 14px;
+  background: var(--border);
+  padding: 1.5px;
+  transition: background 0.3s;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.nl-border-wrap.focused {
+  background: conic-gradient(from var(--nl-angle), var(--cyan) 0%, var(--magenta) 40%, var(--cyan) 70%, var(--magenta) 100%);
+  animation: nl-spin 2.4s linear infinite;
+}
+.nl-border-inner {
+  background: var(--bg);
+  border-radius: 12.5px;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ─── Confetti burst ─── */
+@keyframes confetti-burst {
+  0%   { transform: translate(0,0) rotate(0deg) scale(1); opacity: 1; }
+  70%  { opacity: 0.9; }
+  100% { transform: translate(var(--tx),var(--ty)) rotate(var(--rot)) scale(0.1); opacity: 0; }
+}
+.confetti-piece {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 2px;
+  animation: confetti-burst 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: var(--cd);
+}
+
+/* ─── Footer grid pattern ─── */
+.footer-grid-bg {
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* ─── Custom cursor (desktop only) ─── */
+@media (pointer: fine) {
+  body.custom-cursor, body.custom-cursor * { cursor: none !important; }
+}
+
+/* ─── Mobile menu ─── */
+.mobile-nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+/* ─── Nav active underline ─── */
+.nav-link-active {
+  color: var(--text) !important;
+}
+.nav-link-active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--cyan);
+  border-radius: 1px;
+}
+
+/* ─── Scroll Progress (override) ─── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--magenta));
+  z-index: 9999;
+  transform-origin: left;
+  will-change: transform;
+}
+
+/* ─── KI badge ─── */
+.ki-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+.ki-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 6px var(--cyan);
+  animation: pulse-dot 2s infinite;
+}
