@@ -1,0 +1,43 @@
+User-agent: *
+Allow: /
+
+# KI-Crawler explizit erlaubt
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Maschinenlesbare Inhalte
+Allow: /llms.txt
+Allow: /api/llms-full
+Allow: /api/glossar-search
+
+Sitemap: https://sicherheit.ai/sitemap.xml

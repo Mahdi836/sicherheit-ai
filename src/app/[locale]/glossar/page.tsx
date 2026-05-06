@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import Footer from '@/components/Footer';
 import GlossarClient from '@/components/GlossarClient';
+import JsonLd, { definedTermSetSchema } from '@/components/JsonLd';
 import { GLOSSARY_TERMS } from '@/lib/glossary';
 
 export function generateStaticParams() {
@@ -22,26 +23,10 @@ export default function GlossarPage({
   params: { locale: string };
 }) {
   setRequestLocale(locale);
-  // Schema.org DefinedTermSet
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'DefinedTermSet',
-    name: 'KI-Sicherheit & Cybersecurity Glossar',
-    url: 'https://sicherheit.ai/glossar',
-    hasDefinedTerm: GLOSSARY_TERMS.map(t => ({
-      '@type': 'DefinedTerm',
-      name: t.abbr ? `${t.term} (${t.abbr})` : t.term,
-      description: t.def,
-      inDefinedTermSet: 'https://sicherheit.ai/glossar',
-    })),
-  };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-      />
+      <JsonLd data={definedTermSetSchema(GLOSSARY_TERMS)} />
       <main style={{ minHeight: '100vh', background: 'var(--bg)', paddingTop: '80px' }}>
         {/* Header */}
         <div

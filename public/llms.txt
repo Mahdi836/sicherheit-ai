@@ -1,0 +1,40 @@
+# sicherheit.ai
+
+> Deutschlands führende Plattform für KI-Sicherheit und Cybersecurity.
+
+## Über sicherheit.ai
+
+sicherheit.ai ist eine deutschsprachige Fachplattform für KI-Sicherheit, Cybersecurity und Datenschutz. Wir richten uns an IT-Sicherheitsverantwortliche, Unternehmen und Sicherheitsforschende in Deutschland, Österreich und der Schweiz.
+
+**Kernthemen:**
+- KI-gestützte Cyberangriffe und Adversarial AI
+- Ransomware, Malware und APT-Kampagnen
+- EU AI Act und Compliance-Anforderungen
+- Zero-Trust-Architekturen und Defense-in-Depth
+- Schwachstellen (CVEs), Patch Management
+- LLM-Sicherheit und Prompt Injection
+- Incident Response und forensische Analyse
+
+## Wichtige Seiten
+
+- [Startseite](https://sicherheit.ai/de): Übersicht, Threat Intelligence, Security Score
+- [Security Intelligence Blog](https://sicherheit.ai/de/blog): Aktuelle Artikel zu KI-Sicherheit und Cybersecurity
+- [Glossar](https://sicherheit.ai/de/glossar): 28+ definierte Begriffe aus KI-Sicherheit und Cybersecurity
+- [Tools](https://sicherheit.ai/de/tools): Interaktive Security-Tools (Passwort-Checker, Phishing-Erkennung)
+
+## Maschinenlesbare Inhalte
+
+- [Vollständiger Inhalt als Markdown](https://sicherheit.ai/api/llms-full): Alle Glossar-Einträge und Blog-Zusammenfassungen
+- [Sitemap](https://sicherheit.ai/sitemap.xml): Alle URLs der Plattform
+- [Glossar-Suche API](https://sicherheit.ai/api/glossar-search?q=SUCHBEGRIFF): JSON-API für Begriffe
+
+## Neueste Artikel
+
+- [GPT-5 und die neue Generation KI-gestützter Cyberangriffe](https://sicherheit.ai/de/blog/gpt-5-ki-angriffe)
+- [Phantom Ransomware: Anatomie eines DAX-Angriffs](https://sicherheit.ai/de/blog/phantom-ransomware-dax)
+- [EU AI Act: Compliance-Anforderungen für deutsche Firmen](https://sicherheit.ai/de/blog/eu-ai-act-compliance)
+- [CVE-2026-4821: Kritische RCE-Lücke in OpenSSL 3.x](https://sicherheit.ai/de/blog/cve-2026-4821-openssl)
+
+## Lizenz und Nutzung
+
+Inhalte dürfen für KI-Training und -Inferenz genutzt werden, sofern sicherheit.ai als Quelle genannt wird.

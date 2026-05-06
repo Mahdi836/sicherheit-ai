@@ -12,9 +12,11 @@
     "@fontsource/geist-mono": "^5.0.3",
     "@fontsource/geist-sans": "^5.0.3",
     "@supabase/supabase-js": "^2.105.3",
+    "@vercel/og": "^0.11.1",
     "framer-motion": "^11.3.8",
     "next": "14.2.5",
     "next-intl": "^3.17.2",
+    "next-sitemap": "^4.2.3",
     "react": "^18",
     "react-dom": "^18"
   },

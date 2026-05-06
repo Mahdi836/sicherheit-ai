@@ -6,6 +6,7 @@ import { getPosts, getPost, getRelatedPosts, formatDate } from '@/lib/posts';
 import ArticleTOC from '@/components/blog/ArticleTOC';
 import ArticleShare from '@/components/blog/ArticleShare';
 import ArticleProgress from '@/components/blog/ArticleProgress';
+import JsonLd, { articleSchema } from '@/components/JsonLd';
 import Link from 'next/link';
 
 export const revalidate = 3600;
@@ -15,6 +16,8 @@ export async function generateStaticParams() {
   return posts.map(p => ({ slug: p.slug }));
 }
 
+const BASE_URL = 'https://sicherheit.ai';
+
 export async function generateMetadata({
   params,
 }: {
@@ -22,9 +25,18 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const post = await getPost(params.slug);
   if (!post) return {};
+  const ogUrl = `${BASE_URL}/api/og?title=${encodeURIComponent(post.title)}&category=${encodeURIComponent(post.category)}&author=${encodeURIComponent(post.author)}&readTime=${post.readTime}${post.badge ? `&badge=${encodeURIComponent(post.badge)}` : ''}`;
   return {
-    title: `${post.title} — sicherheit.ai`,
+    title: post.title,
     description: post.excerpt,
+    keywords: post.tags.join(', '),
+    alternates: {
+      canonical: `${BASE_URL}/${params.locale}/blog/${post.slug}`,
+      languages: {
+        de: `${BASE_URL}/de/blog/${post.slug}`,
+        en: `${BASE_URL}/en/blog/${post.slug}`,
+      },
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -32,6 +44,13 @@ export async function generateMetadata({
       publishedTime: post.publishedAt,
       authors: [post.author],
       tags: post.tags,
+      images: [{ url: ogUrl, width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [ogUrl],
     },
   };
 }
@@ -77,44 +96,9 @@ export default async function BlogPostPage({
   const headings = extractHeadings(post.content);
   const badgeStyle = getBadgeStyle(post.badge);
 
-  const faqSchema = post.faqs?.length
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: post.faqs.map(f => ({
-          '@type': 'Question',
-          name: f.q,
-          acceptedAnswer: { '@type': 'Answer', text: f.a },
-        })),
-      }
-    : null;
-
-  const articleSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: post.title,
-    description: post.excerpt,
-    author: { '@type': 'Person', name: post.author },
-    datePublished: post.publishedAt,
-    publisher: {
-      '@type': 'Organization',
-      name: 'sicherheit.ai',
-      url: 'https://sicherheit.ai',
-    },
-  };
-
   return (
     <>
-      {faqSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-      )}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
+      <JsonLd data={articleSchema({ title: post.title, description: post.excerpt, author: post.author, publishedAt: post.publishedAt, slug: post.slug, tags: post.tags })} />
 
       <ArticleProgress />
 

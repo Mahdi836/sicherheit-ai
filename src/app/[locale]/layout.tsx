@@ -4,19 +4,57 @@ export function generateStaticParams() {
 
 import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import { setRequestLocale } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import Nav from '@/components/Nav';
 import CustomCursor from '@/components/CustomCursor';
 import ScrollProgress from '@/components/ScrollProgress';
 import PageTransition from '@/components/PageTransition';
+import JsonLd, { organizationSchema, websiteSchema } from '@/components/JsonLd';
 import '../globals.css';
 
-export const metadata: Metadata = {
-  title: 'sicherheit.ai — KI-Sicherheit & Cybersecurity für Deutschland',
-  description: 'Deutschlands führende Plattform für KI-Sicherheit und Cybersecurity.',
-};
+const BASE_URL = 'https://sicherheit.ai';
+
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const isDE = locale === 'de';
+  return {
+    metadataBase: new URL(BASE_URL),
+    title: {
+      default: 'sicherheit.ai — KI-Sicherheit & Cybersecurity für Deutschland',
+      template: '%s | sicherheit.ai',
+    },
+    description: isDE
+      ? 'Deutschlands führende Plattform für KI-Sicherheit und Cybersecurity. Aktuelle Threat Intelligence, Glossar und interaktive Tools.'
+      : "Germany's leading platform for AI security and cybersecurity.",
+    openGraph: {
+      siteName: 'sicherheit.ai',
+      locale: isDE ? 'de_DE' : 'en_US',
+      type: 'website',
+      images: [{ url: `${BASE_URL}/api/og?title=sicherheit.ai`, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      site: '@sicherheitai',
+    },
+    alternates: {
+      canonical: `${BASE_URL}/${locale}`,
+      languages: {
+        de: `${BASE_URL}/de`,
+        en: `${BASE_URL}/en`,
+        'x-default': `${BASE_URL}/de`,
+      },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+    },
+  };
+}
 
 export default async function LocaleLayout({
   children,
@@ -30,7 +68,13 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
+      <head>
+        <link rel="alternate" hrefLang="de" href={`${BASE_URL}/de`} />
+        <link rel="alternate" hrefLang="en" href={`${BASE_URL}/en`} />
+        <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}/de`} />
+      </head>
       <body>
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
             <div id="scroll-progress" className="scroll-progress" style={{ width: '0%' }} />
