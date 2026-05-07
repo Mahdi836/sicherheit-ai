@@ -2,6 +2,7 @@ import Hero from '@/components/Hero';
 import Ticker from '@/components/Ticker';
 import StatsSection from '@/components/StatsSection';
 import BentoThreats from '@/components/BentoThreats';
+import RobotSection from '@/components/RobotSection';
 import StickyThreatRadar from '@/components/StickyThreatRadar';
 import HorizontalToolScroll from '@/components/HorizontalToolScroll';
 import RadarSection from '@/components/RadarSection';
@@ -29,6 +30,7 @@ export default function HomePage({ params: { locale } }: { params: { locale: str
 
       {/* NEW: 3 immersive scroll sections */}
       <BentoThreats />
+      <RobotSection />
       <StickyThreatRadar />
       <HorizontalToolScroll />
 
