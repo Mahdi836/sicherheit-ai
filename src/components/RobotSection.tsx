@@ -1,7 +1,7 @@
 'use client';
 
 import { SplineScene } from '@/components/ui/splite';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 /* ─── Quiz Data ─────────────────────────────────────────────── */
@@ -322,6 +322,7 @@ export default function RobotSection() {
   const [showExplain, setShowExplain] = useState(false);
   const [typeActive, setTypeActive] = useState(false);
 
+  const robotContainerRef = useRef<HTMLDivElement>(null);
   const topic = topicIdx !== null ? QUIZ_TOPICS[topicIdx] : null;
   const q = topic?.questions[current];
   const score = answers.filter(Boolean).length;
@@ -351,6 +352,22 @@ export default function RobotSection() {
     setAnswers(prev => [...prev, q.options[idx] === q.options[q.correct]]);
     setTimeout(() => setShowExplain(true), 350);
   }
+
+  // Forward global mouse events to Spline canvas so robot reacts anywhere on page
+  useEffect(() => {
+    const handleGlobalMove = (e: MouseEvent) => {
+      const canvas = robotContainerRef.current?.querySelector('canvas');
+      if (!canvas) return;
+      canvas.dispatchEvent(new MouseEvent('mousemove', {
+        clientX: e.clientX,
+        clientY: e.clientY,
+        bubbles: true,
+        cancelable: true,
+      }));
+    };
+    window.addEventListener('mousemove', handleGlobalMove);
+    return () => window.removeEventListener('mousemove', handleGlobalMove);
+  }, []);
 
   function next() {
     if (!topic) return;
@@ -439,7 +456,7 @@ export default function RobotSection() {
           </div>
 
           {/* Robot canvas */}
-          <div style={{
+          <div ref={robotContainerRef} style={{
             position: 'relative',
             height: 'clamp(380px, 45vw, 560px)',
             borderRadius: '16px',
