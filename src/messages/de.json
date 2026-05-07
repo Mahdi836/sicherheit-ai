@@ -45,14 +45,14 @@
     ]
   },
   "stats": {
-    "label": "Aktive Bedrohungen heute",
-    "label2": "Monatliche Leser",
-    "label3": "Anstieg KI-Angriffe 2026",
-    "label4": "Ø Zeit bis Erkennung",
-    "desc1": "// live threat-feed",
-    "desc2": "// unique sessions / mo",
-    "desc3": "// vs. vorjahr YoY",
-    "desc4": "// mean detection window"
+    "label": "Neue Malware-Varianten täglich",
+    "label2": "Sekunden bis zum nächsten Angriff",
+    "label3": "Anstieg KI-Phishing 2024",
+    "label4": "Tage bis zur Erkennung",
+    "desc1": "// Quelle: AV-TEST Institut 2024",
+    "desc2": "// Quelle: Cybersecurity Ventures 2023",
+    "desc3": "// Quelle: SlashNext Phishing Report 2024",
+    "desc4": "// Quelle: IBM Cost of a Data Breach 2024"
   },
   "radar": {
     "label": "// Live Threat Intelligence",

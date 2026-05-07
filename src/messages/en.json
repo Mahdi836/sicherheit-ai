@@ -45,14 +45,14 @@
     ]
   },
   "stats": {
-    "label": "Active threats today",
-    "label2": "Monthly readers",
-    "label3": "Rise in AI attacks 2026",
-    "label4": "Avg. time to detection",
-    "desc1": "// live threat-feed",
-    "desc2": "// unique sessions / mo",
-    "desc3": "// vs. previous year YoY",
-    "desc4": "// mean detection window"
+    "label": "New malware variants daily",
+    "label2": "Seconds until next attack",
+    "label3": "Rise in AI-driven phishing 2024",
+    "label4": "Days to breach detection",
+    "desc1": "// Source: AV-TEST Institute 2024",
+    "desc2": "// Source: Cybersecurity Ventures 2023",
+    "desc3": "// Source: SlashNext Phishing Report 2024",
+    "desc4": "// Source: IBM Cost of a Data Breach 2024"
   },
   "radar": {
     "label": "// Live Threat Intelligence",

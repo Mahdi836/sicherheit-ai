@@ -4,10 +4,10 @@ import { useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 
 const STATS = [
-  { count: 2847, suffix: '', colorSuffix: false, labelKey: 'label', descKey: 'desc1' },
-  { count: 12, suffix: 'M+', colorSuffix: true, labelKey: 'label2', descKey: 'desc2', colorVar: '--cyan' },
+  { count: 4000, suffix: '+', colorSuffix: false, labelKey: 'label', descKey: 'desc1' },
+  { count: 11, suffix: 'Sek.', colorSuffix: true, labelKey: 'label2', descKey: 'desc2', colorVar: '--cyan' },
   { count: 340, suffix: '%', colorSuffix: true, labelKey: 'label3', descKey: 'desc3', colorVar: '--magenta' },
-  { count: 48, suffix: 'h', colorSuffix: true, labelKey: 'label4', descKey: 'desc4', colorVar: '--cyan' },
+  { count: 204, suffix: 'T', colorSuffix: true, labelKey: 'label4', descKey: 'desc4', colorVar: '--cyan' },
 ];
 
 export default function StatsSection() {
