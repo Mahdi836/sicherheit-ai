@@ -139,7 +139,7 @@ export default function RobotSection() {
         @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
         @keyframes scandown{0%{top:0;opacity:0}5%{opacity:.35}90%{opacity:.35}100%{top:100%;opacity:0}}
         .rs-scanline{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,240,255,0.28),transparent);animation:scandown 7s linear infinite;pointer-events:none;z-index:4}
-        @media(max-width:760px){.rs-wrap{flex-direction:column!important}.rs-robot{width:100%!important;min-width:unset!important;height:280px!important}}
+        @media(max-width:760px){.rs-wrap{flex-direction:column!important}.rs-robot{width:100%!important;min-width:unset!important}}
       `}</style>
 
       <div className="rs-wrap" style={{ position: 'relative', maxWidth: '1080px', margin: '0 auto', padding: 'clamp(32px,5vw,56px) 24px', display: 'flex', alignItems: 'stretch', zIndex: 2 }}>
@@ -295,7 +295,7 @@ export default function RobotSection() {
         </div>
 
         {/* RIGHT: Robot — no box, floats free */}
-        <div className="rs-robot" style={{ width: '42%', minWidth: '260px', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div className="rs-robot" style={{ width: '50%', minWidth: '280px', position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
 
           <motion.div animate={{ y: [0, -4, 0] }} transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
             style={{ alignSelf: 'flex-end', display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'var(--mono)', fontSize: '9px', letterSpacing: '0.12em', color: ac, textTransform: 'uppercase' as const, background: 'rgba(6,11,24,0.85)', border: '1px solid ' + ac + '28', padding: '5px 11px', borderRadius: '100px', backdropFilter: 'blur(8px)', marginBottom: '8px', transition: 'color 0.4s, border-color 0.4s' }}
@@ -304,10 +304,14 @@ export default function RobotSection() {
             {phase === 'quiz' ? topic.icon + ' ' + topic.title : phase === 'result' ? '✓ Fertig' : 'Bereit'}
           </motion.div>
 
-          <div style={{ width: '100%', height: 'clamp(380px,48vw,540px)', position: 'relative' }}>
+          {/* Canvas container: landscape ratio so Spline camera renders correctly */}
+          <div style={{ width: '100%', position: 'relative', overflow: 'hidden', aspectRatio: '5 / 4' }}>
             <div className="rs-scanline" style={{ top: 0 }} />
-            <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '65%', height: '28%', background: 'radial-gradient(ellipse,' + ac + '12 0%,transparent 70%)', transition: 'all 0.6s', pointerEvents: 'none' }} />
-            <SplineScene scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" className="w-full h-full" />
+            <div style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', width: '65%', height: '28%', background: 'radial-gradient(ellipse,' + ac + '12 0%,transparent 70%)', transition: 'all 0.6s', pointerEvents: 'none', zIndex: 2 }} />
+            {/* Slightly oversized canvas, centered — prevents camera clipping at scene edges */}
+            <div style={{ position: 'absolute', top: '-5%', left: '-5%', width: '110%', height: '110%' }}>
+              <SplineScene scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" className="w-full h-full" />
+            </div>
           </div>
 
           {phase === 'quiz' && (
