@@ -200,7 +200,7 @@ export default function Hero() {
       sub: hudT('threatsSub'),
       barWidth: '73%',
       barColor: 'var(--magenta)',
-      pos: { position: 'absolute', top: '22%', left: '8%' },
+      pos: { position: 'absolute', top: '18%', left: '52%' },
       delay: 0,
     },
     {
@@ -209,7 +209,7 @@ export default function Hero() {
       valueColor: 'var(--cyan)',
       sub: hudT('statusSub'),
       dotColor: '#78C864',
-      pos: { position: 'absolute', top: '30%', right: '7%' },
+      pos: { position: 'absolute', top: '22%', right: '6%' },
       delay: 2,
     },
     {
@@ -217,7 +217,7 @@ export default function Hero() {
       value: hudT('cveValue'),
       sub: hudT('cveSub'),
       barWidth: '45%',
-      pos: { position: 'absolute', bottom: '28%', left: '5%' },
+      pos: { position: 'absolute', bottom: '30%', left: '50%' },
       delay: 4,
     },
     {
@@ -226,7 +226,7 @@ export default function Hero() {
       valueSize: '14px',
       sub: hudT('aiSub'),
       dotColor: 'var(--magenta)',
-      pos: { position: 'absolute', bottom: '22%', right: '9%' },
+      pos: { position: 'absolute', bottom: '20%', right: '7%' },
       delay: 1,
     },
   ];
