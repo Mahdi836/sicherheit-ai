@@ -17,6 +17,7 @@ const CARDS = [
     badge: { label: 'CVSS 10.0', bg: 'rgba(255,45,111,0.15)', color: '#FF2D6F' },
     title: 'Log4Shell (CVE-2021-44228): Die Schwachstelle die das Internet erschütterte',
     sub: 'Remote Code Execution in Apache Log4j 2 — Millionen Java-Anwendungen weltweit betroffen. BSI stufte auf Warnstufe 4 (Rot) hoch.',
+    hook: 'Eine einzige Zeile Code reichte aus, um Millionen Server weltweit angreifbar zu machen. Log4Shell gilt als eine der kritischsten Schwachstellen der Internetgeschichte — CVSS 10.0, aktiv ausgenutzt innerhalb von Stunden nach Bekanntwerden.',
     meta: 'Quelle: BSI, NIST NVD, CISA · Dez. 2021 · 14 min',
     visual: 'neural',
     slug: 'log4shell-cve-2021-44228',
@@ -31,6 +32,7 @@ const CARDS = [
     glowHover: '0 0 40px rgba(255,45,111,0.2), 0 16px 48px rgba(0,0,0,0.5)',
     badge: { label: 'CVSS 9.8', bg: 'rgba(255,150,50,0.15)', color: '#FF9632' },
     title: 'MOVEit-Hack: Cl0p Ransomware trifft 2.600 Organisationen',
+    hook: 'In 48 Stunden erbeutete die Cl0p-Gruppe Daten von über 2.600 Organisationen — darunter Regierungsbehörden, Banken und Universitäten. Wie ein einziger SQL-Injection-Bug zum größten Datenleck des Jahres 2023 wurde.',
     meta: 'Quelle: Mandiant, Emsisoft · Jun. 2023',
     visual: 'lock',
     slug: 'moveit-hack-cl0p-2023',
@@ -45,6 +47,7 @@ const CARDS = [
     glowHover: '0 0 40px rgba(120,144,255,0.2), 0 16px 48px rgba(0,0,0,0.5)',
     badge: { label: 'IN KRAFT', bg: 'rgba(120,200,100,0.12)', color: '#78C864' },
     title: 'EU AI Act (VO 2024/1689): Was Unternehmen jetzt wissen müssen',
+    hook: 'Seit August 2024 gilt die weltweit erste umfassende KI-Regulierung. Bußgelder bis 35 Mio. Euro drohen — doch viele Unternehmen wissen nicht einmal, ob ihre Systeme unter das Gesetz fallen.',
     meta: 'Quelle: EU Amtsblatt · Aug. 2024',
     visual: 'shield',
     slug: 'eu-ai-act-2024-compliance',
@@ -59,6 +62,7 @@ const CARDS = [
     glowHover: '0 0 40px rgba(255,150,50,0.18), 0 16px 48px rgba(0,0,0,0.5)',
     badge: { label: 'OFFIZIELL', bg: 'rgba(255,45,111,0.12)', color: '#FF2D6F' },
     title: 'BSI Lagebericht 2024: IT-Sicherheit in Deutschland',
+    hook: 'Das BSI verzeichnet 2024 eine nie dagewesene Qualität an Cyberangriffen. KI-generierte Phishing-Mails, professionelle Ransomware-Gruppen und staatlich gesteuerte Spionage bedrohen Behörden und Unternehmen gleichermaßen.',
     meta: 'Quelle: Bundesamt für Sicherheit in der IT · Okt. 2024',
     visual: 'bug',
     slug: 'bsi-lagebericht-2024',
@@ -73,6 +77,7 @@ const CARDS = [
     glowHover: '0 0 40px rgba(150,100,255,0.2), 0 16px 48px rgba(0,0,0,0.5)',
     badge: { label: 'ANALYSE', bg: 'rgba(150,100,255,0.15)', color: '#9664FF' },
     title: 'Ransomware-as-a-Service 2024: Das Geschäftsmodell der Cyberkriminalität',
+    hook: 'LockBit, BlackCat, Cl0p — moderne Ransomware-Gruppen operieren wie Tech-Startups mit Support-Teams, SLAs und Affiliate-Programmen. IBM beziffert den durchschnittlichen Schaden pro Angriff auf 4,9 Mio. Dollar.',
     meta: 'Quelle: Sophos, IBM, Europol · 2024',
     visual: 'eye',
     slug: 'ransomware-as-a-service-2024',
@@ -277,15 +282,56 @@ function BentoCard({ card, featured = false }: { card: typeof CARDS[0]; featured
           </p>
         )}
 
-        <div style={{ fontSize: '11px', color: 'rgba(232,237,248,0.35)', fontFamily: 'var(--mono)', marginTop: '4px' }}>
+        {'hook' in card && card.hook && (
+          <p style={{
+            fontSize: featured ? '14px' : '12px',
+            color: 'rgba(232,237,248,0.60)',
+            lineHeight: 1.65,
+            margin: 0,
+          }}>
+            {card.hook}
+          </p>
+        )}
+
+        <div style={{ fontSize: '11px', color: 'rgba(232,237,248,0.30)', fontFamily: 'var(--mono)' }}>
           {card.meta}
+        </div>
+
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '6px',
+          marginTop: '4px',
+          padding: featured ? '10px 18px' : '7px 14px',
+          borderRadius: '6px',
+          background: `${card.catColor}18`,
+          border: `1px solid ${card.catColor}40`,
+          color: card.catColor,
+          fontSize: featured ? '13px' : '11px',
+          fontWeight: 700,
+          letterSpacing: '0.03em',
+          cursor: 'pointer',
+          alignSelf: 'flex-start',
+          transition: 'background 0.2s, border-color 0.2s',
+        }}
+          onMouseEnter={e => {
+            (e.currentTarget as HTMLElement).style.background = `${card.catColor}28`;
+            (e.currentTarget as HTMLElement).style.borderColor = `${card.catColor}70`;
+          }}
+          onMouseLeave={e => {
+            (e.currentTarget as HTMLElement).style.background = `${card.catColor}18`;
+            (e.currentTarget as HTMLElement).style.borderColor = `${card.catColor}40`;
+          }}
+        >
+          Jetzt lesen →
         </div>
 
         {!featured && (
           <div style={{
-            position: 'absolute', bottom: '22px', right: '22px',
-            width: '44px', height: '44px',
+            position: 'absolute', top: '20px', right: '20px',
+            width: '36px', height: '36px',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
+            opacity: 0.4,
           }}>
             {VISUALS[card.visual]}
           </div>
