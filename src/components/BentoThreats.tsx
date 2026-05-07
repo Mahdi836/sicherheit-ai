@@ -1,36 +1,39 @@
 'use client';
 
 import { useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
 const CARDS = [
   {
-    id: 'ai-main',
+    id: 'log4shell',
     featured: true,
-    cat: 'KI-Sicherheit',
+    cat: 'Schwachstelle',
     catColor: '#00F0FF',
     catBg: 'rgba(0,240,255,0.12)',
     gradientBg: 'linear-gradient(135deg, #060D24 0%, #071830 40%, #0A1E40 100%)',
     glowColor: 'rgba(0,240,255,0.18)',
     glowHover: '0 0 60px rgba(0,240,255,0.25), 0 24px 80px rgba(0,0,0,0.5)',
-    badge: { label: 'KRITISCH', bg: 'rgba(255,45,111,0.15)', color: '#FF2D6F' },
-    title: 'GPT-5 revolutioniert KI-Angriffe: Was Unternehmen jetzt wissen müssen',
-    sub: 'Neue Angriffsklasse bedroht kritische Infrastruktur — vollautomatisierte Exploits in freier Wildbahn',
-    meta: 'Dr. Lena Hartmann · 04. Mai 2026 · 12 min',
+    badge: { label: 'CVSS 10.0', bg: 'rgba(255,45,111,0.15)', color: '#FF2D6F' },
+    title: 'Log4Shell (CVE-2021-44228): Die Schwachstelle die das Internet erschütterte',
+    sub: 'Remote Code Execution in Apache Log4j 2 — Millionen Java-Anwendungen weltweit betroffen. BSI stufte auf Warnstufe 4 (Rot) hoch.',
+    meta: 'Quelle: BSI, NIST NVD, CISA · Dez. 2021 · 14 min',
     visual: 'neural',
+    slug: 'log4shell-cve-2021-44228',
   },
   {
-    id: 'ransomware',
+    id: 'moveit',
     cat: 'Ransomware',
     catColor: '#FF2D6F',
     catBg: 'rgba(255,45,111,0.12)',
     gradientBg: 'linear-gradient(135deg, #1A0610 0%, #240A18 100%)',
     glowColor: 'rgba(255,45,111,0.15)',
     glowHover: '0 0 40px rgba(255,45,111,0.2), 0 16px 48px rgba(0,0,0,0.5)',
-    badge: { label: 'HOCH', bg: 'rgba(255,150,50,0.15)', color: '#FF9632' },
-    title: 'Phantom-Gruppe: Anatomie eines DAX-Angriffs',
-    meta: 'Markus Schreiber · 03. Mai 2026',
+    badge: { label: 'CVSS 9.8', bg: 'rgba(255,150,50,0.15)', color: '#FF9632' },
+    title: 'MOVEit-Hack: Cl0p Ransomware trifft 2.600 Organisationen',
+    meta: 'Quelle: Mandiant, Emsisoft · Jun. 2023',
     visual: 'lock',
+    slug: 'moveit-hack-cl0p-2023',
   },
   {
     id: 'eu-ai-act',
@@ -40,36 +43,39 @@ const CARDS = [
     gradientBg: 'linear-gradient(135deg, #060B24 0%, #0A0F38 100%)',
     glowColor: 'rgba(120,144,255,0.15)',
     glowHover: '0 0 40px rgba(120,144,255,0.2), 0 16px 48px rgba(0,0,0,0.5)',
-    badge: { label: 'NEU', bg: 'rgba(120,200,100,0.12)', color: '#78C864' },
-    title: 'EU AI Act: Compliance-Deadline rückt näher',
-    meta: 'Julia Becker · 02. Mai 2026',
+    badge: { label: 'IN KRAFT', bg: 'rgba(120,200,100,0.12)', color: '#78C864' },
+    title: 'EU AI Act (VO 2024/1689): Was Unternehmen jetzt wissen müssen',
+    meta: 'Quelle: EU Amtsblatt · Aug. 2024',
     visual: 'shield',
+    slug: 'eu-ai-act-2024-compliance',
   },
   {
-    id: 'cve',
-    cat: 'Schwachstelle',
+    id: 'bsi',
+    cat: 'Lagebericht',
     catColor: '#FF9632',
     catBg: 'rgba(255,150,50,0.12)',
     gradientBg: 'linear-gradient(135deg, #1A0E00 0%, #241500 100%)',
     glowColor: 'rgba(255,150,50,0.12)',
     glowHover: '0 0 40px rgba(255,150,50,0.18), 0 16px 48px rgba(0,0,0,0.5)',
-    badge: { label: 'CVSS 9.8', bg: 'rgba(255,45,111,0.12)', color: '#FF2D6F' },
-    title: 'CVE-2026-4821: RCE in OpenSSL — sofort patchen',
-    meta: 'CERT-DE · Heute',
+    badge: { label: 'OFFIZIELL', bg: 'rgba(255,45,111,0.12)', color: '#FF2D6F' },
+    title: 'BSI Lagebericht 2024: IT-Sicherheit in Deutschland',
+    meta: 'Quelle: Bundesamt für Sicherheit in der IT · Okt. 2024',
     visual: 'bug',
+    slug: 'bsi-lagebericht-2024',
   },
   {
-    id: 'privacy',
-    cat: 'Datenschutz',
+    id: 'raas',
+    cat: 'Ransomware',
     catColor: '#9664FF',
     catBg: 'rgba(150,100,255,0.12)',
     gradientBg: 'linear-gradient(135deg, #0E0620 0%, #160A30 100%)',
     glowColor: 'rgba(150,100,255,0.12)',
     glowHover: '0 0 40px rgba(150,100,255,0.2), 0 16px 48px rgba(0,0,0,0.5)',
-    badge: { label: 'DSGVO', bg: 'rgba(150,100,255,0.15)', color: '#9664FF' },
-    title: 'Datenpanne: 4M Nutzerdaten bei Telekommunikationsanbieter',
-    meta: 'TU Berlin · 01. Mai 2026',
+    badge: { label: 'ANALYSE', bg: 'rgba(150,100,255,0.15)', color: '#9664FF' },
+    title: 'Ransomware-as-a-Service 2024: Das Geschäftsmodell der Cyberkriminalität',
+    meta: 'Quelle: Sophos, IBM, Europol · 2024',
     visual: 'eye',
+    slug: 'ransomware-as-a-service-2024',
   },
 ];
 
@@ -153,10 +159,12 @@ const cardVariants = {
 };
 
 function BentoCard({ card, featured = false }: { card: typeof CARDS[0]; featured?: boolean }) {
+  const router = useRouter();
   return (
     <motion.article
       className={featured ? 'bento-featured' : undefined}
       variants={cardVariants}
+      onClick={() => router.push(`/de/blog/${card.slug}`)}
       whileHover={{
         scale: 1.02,
         boxShadow: card.glowHover,
