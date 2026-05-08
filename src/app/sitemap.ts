@@ -44,13 +44,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // One entry per glossary term (anchor links)
+  // One page per glossary term — individual URLs for SEO
   const glossarPages = LOCALES.flatMap(locale =>
     GLOSSARY_TERMS.map(term => ({
-      url: `${BASE_URL}/${locale}/glossar#term-${term.id}`,
+      url: `${BASE_URL}/${locale}/glossar/${term.id}`,
       lastModified: now,
       changeFrequency: 'monthly' as const,
-      priority: 0.6,
+      priority: 0.75,
     }))
   );
 

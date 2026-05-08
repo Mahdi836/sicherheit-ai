@@ -94,7 +94,7 @@ export default function GlossarPage({
 
         {/* Client-side interactive glossary */}
         <div className="subpage-content">
-          <GlossarClient terms={GLOSSARY_TERMS} letters={ALL_LETTERS} />
+          <GlossarClient terms={GLOSSARY_TERMS} letters={ALL_LETTERS} locale={locale} />
         </div>
       </main>
       <Footer locale={locale} />

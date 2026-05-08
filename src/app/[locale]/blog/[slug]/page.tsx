@@ -6,7 +6,7 @@ import { getPosts, getPost, getRelatedPosts, formatDate } from '@/lib/posts';
 import ArticleTOC from '@/components/blog/ArticleTOC';
 import ArticleShare from '@/components/blog/ArticleShare';
 import ArticleProgress from '@/components/blog/ArticleProgress';
-import JsonLd, { articleSchema } from '@/components/JsonLd';
+import JsonLd, { articleSchema, faqSchema } from '@/components/JsonLd';
 import Link from 'next/link';
 import { autolinkGlossary } from '@/lib/autolink';
 
@@ -101,6 +101,7 @@ export default async function BlogPostPage({
   return (
     <>
       <JsonLd data={articleSchema({ title: post.title, description: post.excerpt, author: post.author, publishedAt: post.publishedAt, slug: post.slug, tags: post.tags })} />
+      {post.faqs && post.faqs.length > 0 && <JsonLd data={faqSchema(post.faqs)} />}
 
       <ArticleProgress />
 

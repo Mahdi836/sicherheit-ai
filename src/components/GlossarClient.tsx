@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { GlossaryTerm, GlossaryCategory, CATEGORY_COLORS } from '@/lib/glossary';
 
 interface Props {
   terms: GlossaryTerm[];
   letters: string[];
+  locale?: string;
 }
 
 const FILTERS: { label: string; value: GlossaryCategory | 'Alle' }[] = [
@@ -20,7 +22,7 @@ const FILTERS: { label: string; value: GlossaryCategory | 'Alle' }[] = [
   { label: 'Protokoll', value: 'Protokoll' },
 ];
 
-export default function GlossarClient({ terms }: Props) {
+export default function GlossarClient({ terms, locale = 'de' }: Props) {
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState<GlossaryCategory | 'Alle'>('Alle');
@@ -363,6 +365,27 @@ export default function GlossarClient({ terms }: Props) {
                                   </div>
                                 </div>
                               )}
+
+                              {/* Mehr erfahren Button */}
+                              <div style={{ marginTop: '14px' }}>
+                                <Link
+                                  href={`/${locale}/glossar/${term.id}`}
+                                  onClick={e => e.stopPropagation()}
+                                  style={{
+                                    display: 'inline-flex', alignItems: 'center', gap: '7px',
+                                    padding: '9px 16px', borderRadius: '8px',
+                                    background: 'var(--cyan-dim)',
+                                    border: '1px solid rgba(0,240,255,0.25)',
+                                    color: 'var(--cyan)',
+                                    fontFamily: 'var(--mono)', fontSize: '11px',
+                                    fontWeight: 700, letterSpacing: '0.06em',
+                                    textDecoration: 'none',
+                                    transition: 'all 0.2s',
+                                  }}
+                                >
+                                  Vollständige Erklärung →
+                                </Link>
+                              </div>
                             </div>
                           )}
                         </div>
