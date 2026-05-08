@@ -77,6 +77,11 @@ export default function GlossarTermPage({
   return (
     <>
       <JsonLd data={termSchema(term, params.locale)} />
+      <style>{`
+        .gterm-related-link:hover { border-color: var(--border-bright) !important; }
+        .gterm-back:hover { border-color: var(--cyan) !important; color: var(--cyan) !important; }
+        .gterm-all-link:hover { border-color: var(--border-bright) !important; color: var(--text) !important; }
+      `}</style>
       <main style={{ minHeight: '100vh', background: 'var(--bg)', paddingTop: '80px' }}>
 
         {/* ── Header ── */}
@@ -278,14 +283,13 @@ export default function GlossarTermPage({
                       const rc = CATEGORY_COLORS[rt.category] ?? CATEGORY_COLORS.Abwehr;
                       return (
                         <Link key={rt.id} href={`/${params.locale}/glossar/${rt.id}`}
+                          className="gterm-related-link"
                           style={{
                             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                             padding: '10px 12px', borderRadius: '8px',
                             background: 'var(--surface)', border: '1px solid var(--border)',
                             textDecoration: 'none', transition: 'border-color 0.2s',
                           }}
-                          onMouseEnter={e => (e.currentTarget as HTMLElement).style.borderColor = 'var(--border-bright)'}
-                          onMouseLeave={e => (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)'}
                         >
                           <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text)' }}>
                             {rt.abbr ?? rt.term}
@@ -302,6 +306,7 @@ export default function GlossarTermPage({
 
               {/* Back to glossar */}
               <Link href={`/${params.locale}/glossar`}
+                className="gterm-back"
                 style={{
                   display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
                   padding: '12px', borderRadius: '10px',
@@ -309,8 +314,6 @@ export default function GlossarTermPage({
                   color: 'var(--text-muted)', fontSize: '13px', fontFamily: 'var(--mono)',
                   textDecoration: 'none', transition: 'all 0.2s',
                 }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--cyan)'; (e.currentTarget as HTMLElement).style.color = 'var(--cyan)'; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)'; (e.currentTarget as HTMLElement).style.color = 'var(--text-muted)'; }}
               >
                 ← Zurück zum Glossar
               </Link>
