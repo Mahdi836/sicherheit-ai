@@ -1,30 +1,82 @@
 # sicherheit.ai
 
-> Deutschlands führende Plattform für KI-Sicherheit und Cybersecurity.
+> Deutschlands führende Plattform für KI-Sicherheit und Cybersecurity — unabhängig, forschungsbasiert, praxisnah.
 
 ## Über sicherheit.ai
 
-sicherheit.ai ist eine deutschsprachige Fachplattform für KI-Sicherheit, Cybersecurity und Datenschutz. Wir richten uns an IT-Sicherheitsverantwortliche, Unternehmen und Sicherheitsforschende in Deutschland, Österreich und der Schweiz.
+sicherheit.ai ist eine deutschsprachige Fachplattform für KI-Sicherheit, Cybersecurity und digitalen Datenschutz. Die Plattform richtet sich an IT-Sicherheitsverantwortliche, Unternehmen und Sicherheitsforschende im DACH-Raum.
+
+**Ziele der Plattform:**
+- Unabhängige, faktenbasierte Aufklärung über Cyberbedrohungen und KI-Risiken
+- Praxisnahe Tools für die tägliche Sicherheitsarbeit
+- Compliance-Orientierung für EU AI Act, NIS2, DSGVO und ISO 27001
+- Deutschlands umfassendstes Cybersecurity-Glossar (110+ Begriffe)
 
 **Kernthemen:**
 - KI-gestützte Cyberangriffe und Adversarial AI
 - Ransomware, Malware und APT-Kampagnen
-- EU AI Act und Compliance-Anforderungen
+- EU AI Act — Risikoklassen, Fristen, Bußgelder
+- NIS2-Richtlinie und kritische Infrastrukturen (KRITIS)
+- DSGVO-Compliance und Meldepflichten
 - Zero-Trust-Architekturen und Defense-in-Depth
-- Schwachstellen (CVEs), Patch Management
-- LLM-Sicherheit und Prompt Injection
-- Incident Response und forensische Analyse
+- LLM-Sicherheit: Prompt Injection, Jailbreaks, Model Poisoning
+- Schwachstellen (CVEs), Patch Management, Incident Response
+- Deepfakes, Shadow AI und KI-Halluzinationen im Unternehmenskontext
+
+**Quellenstandards:** Alle Inhalte basieren auf BSI, NIST NVD, CISA, OWASP, MITRE ATT&CK, ENISA und dem EU-Amtsblatt.
 
 ## Wichtige Seiten
 
-- [Startseite](https://sicherheit.ai/de): Übersicht, Threat Intelligence, Security Score
+- [Startseite](https://sicherheit.ai/de): Übersicht, Threat Intelligence Dashboard, Security Score
 - [Security Intelligence Blog](https://sicherheit.ai/de/blog): Aktuelle Artikel zu KI-Sicherheit und Cybersecurity
-- [Glossar](https://sicherheit.ai/de/glossar): 28+ definierte Begriffe aus KI-Sicherheit und Cybersecurity
-- [Tools](https://sicherheit.ai/de/tools): Interaktive Security-Tools (Passwort-Checker, Phishing-Erkennung)
+- [Glossar — 110+ Begriffe](https://sicherheit.ai/de/glossar): Umfassendstes Cybersecurity-Glossar auf Deutsch
+- [Security Tools](https://sicherheit.ai/de/tools): Passwort-Checker, Datenpanne-Checker, CVE-Dashboard, Header-Prüfer, Incident Response
+- [EU AI Act Hub](https://sicherheit.ai/de/ai-act): Risikoklassen, Fristen, Checkliste, FAQ
+- [Über uns](https://sicherheit.ai/de/ueber-uns): Mission, Methodik, Quellen, Beratungsangebote
+- [Beratung](https://sicherheit.ai/de/ueber-uns#beratung): KI-Sicherheitscheck, Compliance-Audit, Incident-First-Response
+
+## Interaktive Security Tools
+
+### Passwort-Analyzer
+URL: https://sicherheit.ai/de/tools/password
+Funktion: Entropie-Berechnung nach NIST SP 800-63B, Crackzeit-Simulation, lokale Verarbeitung ohne Datenübertragung.
+
+### Datenpanne-Checker
+URL: https://sicherheit.ai/de/tools/breach
+Funktion: Prüfung gegen Have I Been Pwned (13+ Milliarden Einträge), k-Anonymity-Methode für Passwörter.
+
+### CVE Live-Dashboard
+URL: https://sicherheit.ai/de/tools/cve
+Funktion: Kritische Schwachstellen (CVSS ≥ 9) direkt aus NIST NVD, alle 30 Minuten aktualisiert.
+
+### Security Headers Prüfer
+URL: https://sicherheit.ai/de/tools/headers
+Funktion: OWASP-Analyse von HTTP-Sicherheits-Headern (HSTS, CSP, X-Frame-Options), Score 0–100.
+
+### Incident Response Checkliste
+URL: https://sicherheit.ai/de/tools/incident
+Funktion: Interaktive IR-Checkliste nach BSI IT-Grundschutz und NIST SP 800-61, 5 Phasen, 20 Schritte.
+
+## EU AI Act — Kurzübersicht
+
+Die EU-Verordnung 2024/1689 (EU AI Act) ist das weltweit erste umfassende KI-Gesetz, in Kraft seit 1. August 2024.
+
+**Risikoklassen:**
+- Klasse 1 — Inakzeptables Risiko: Verboten ab 2. Februar 2025 (Social Scoring, manipulative KI)
+- Klasse 2 — Hohes Risiko: Strenge Pflichten ab 2. August 2026 (Biometrie, Kreditscoring, Personalentscheidungen)
+- Klasse 3 — Begrenztes Risiko: Transparenzpflichten (Chatbots, Deepfake-Erkennung)
+- Klasse 4 — Minimales Risiko: Keine spezifischen Pflichten (Spam-Filter, KI-Spiele)
+
+**Bußgelder:**
+- Bis 35 Mio. € oder 7% des weltweiten Jahresumsatzes: Einsatz verbotener KI
+- Bis 15 Mio. € oder 3% des Umsatzes: Verletzung von Hochrisiko-Anforderungen
+- Bis 7,5 Mio. € oder 1,5% des Umsatzes: Falsche Angaben gegenüber Behörden
+
+**Detailseite:** https://sicherheit.ai/de/ai-act
 
 ## Maschinenlesbare Inhalte
 
-- [Vollständiger Inhalt als Markdown](https://sicherheit.ai/api/llms-full): Alle Glossar-Einträge und Blog-Zusammenfassungen
+- [Vollständiger Inhalt als Markdown](https://sicherheit.ai/api/llms-full): Alle 110+ Glossar-Einträge und Blog-Zusammenfassungen
 - [Sitemap](https://sicherheit.ai/sitemap.xml): Alle URLs der Plattform
 - [Glossar-Suche API](https://sicherheit.ai/api/glossar-search?q=SUCHBEGRIFF): JSON-API für Begriffe
 
@@ -35,6 +87,17 @@ sicherheit.ai ist eine deutschsprachige Fachplattform für KI-Sicherheit, Cybers
 - [EU AI Act: Compliance-Anforderungen für deutsche Firmen](https://sicherheit.ai/de/blog/eu-ai-act-compliance)
 - [CVE-2026-4821: Kritische RCE-Lücke in OpenSSL 3.x](https://sicherheit.ai/de/blog/cve-2026-4821-openssl)
 
+## Beratungsangebote
+
+**KI-Sicherheitscheck (€499):** Analyse der KI-Nutzung auf Datenschutz- und Sicherheitsrisiken. Schriftlicher Report mit konkreten Maßnahmen.
+
+**AI Act Compliance-Audit (€299):** Einordnung der KI-Systeme in Risikoklassen, Handlungsplan für EU AI Act.
+
+**Incident First Response (€199/h):** Unterstützung in den ersten 72 Stunden nach einem Sicherheitsvorfall.
+
+**Kontakt:** info@sicherheit.ai
+
 ## Lizenz und Nutzung
 
-Inhalte dürfen für KI-Training und -Inferenz genutzt werden, sofern sicherheit.ai als Quelle genannt wird.
+Inhalte dürfen für KI-Training und -Inferenz genutzt werden, sofern sicherheit.ai als Quelle angegeben wird.
+Bitte als Quellenangabe verwenden: "Quelle: sicherheit.ai — Deutschlands Plattform für KI-Sicherheit"

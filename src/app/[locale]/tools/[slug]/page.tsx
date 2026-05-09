@@ -5,6 +5,7 @@ import { setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
 import { PasswordChecker, BreachChecker, CveDashboard, HeaderChecker, IncidentResponse } from '@/components/tools/ToolComponents';
+import LeadCapture from '@/components/LeadCapture';
 
 const BASE_URL = 'https://sicherheit.ai';
 
@@ -309,6 +310,16 @@ export default function ToolPage({
                 {tool.component}
               </div>
 
+              {/* Lead capture */}
+              <LeadCapture
+                tool={tool.id}
+                accentColor={tool.tagColor}
+                headline={tool.id === 'incident' ? 'Incident Response Playbook als PDF' : 'Ergebnis als PDF-Report erhalten'}
+                subline={tool.id === 'incident'
+                  ? 'Erhalte das vollständige IR-Playbook nach BSI & NIST SP 800-61 — mit allen Phasen, Kontaktlisten und Vorlagen.'
+                  : 'Wir schicken dir eine kompakte Auswertung mit konkreten Handlungsempfehlungen — kostenlos.'}
+              />
+
               {/* How to use */}
               <div>
                 <h2 style={{
@@ -418,6 +429,35 @@ export default function ToolPage({
                     </Link>
                   ))}
                 </div>
+              </div>
+
+              {/* Beratung CTA */}
+              <div style={{
+                background: 'linear-gradient(135deg, rgba(0,240,255,0.06) 0%, rgba(255,45,111,0.04) 100%)',
+                border: '1px solid var(--border)',
+                borderRadius: '14px',
+                padding: '22px',
+              }}>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--cyan)', marginBottom: '10px' }}>
+                  Professionelle Hilfe
+                </div>
+                <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text)', marginBottom: '8px', lineHeight: 1.3 }}>
+                  Unsicher, was dein Ergebnis bedeutet?
+                </div>
+                <p style={{ fontSize: '12px', color: 'var(--text-muted)', lineHeight: 1.6, margin: '0 0 14px' }}>
+                  In einem 30-minütigen Erstgespräch analysieren wir deine Situation und geben konkrete Handlungsempfehlungen.
+                </p>
+                <a href={`/${params.locale}/ueber-uns#beratung`}
+                  style={{
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    padding: '11px 16px',
+                    background: 'linear-gradient(135deg, var(--cyan) 0%, #007A9A 100%)',
+                    color: '#060B18', fontWeight: 700, fontSize: '13px',
+                    borderRadius: '9px', textDecoration: 'none',
+                    fontFamily: 'var(--font)',
+                  }}>
+                  Beratung buchen →
+                </a>
               </div>
 
               {/* Back to library */}
