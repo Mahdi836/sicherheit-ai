@@ -71,6 +71,8 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <head>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="dns-prefetch" href="https://sicherheit.ai" />
+        <link rel="preconnect" href="https://sicherheit.ai" />
         <link rel="alternate" hrefLang="de" href={`${BASE_URL}/de`} />
         <link rel="alternate" hrefLang="en" href={`${BASE_URL}/en`} />
         <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}/de`} />

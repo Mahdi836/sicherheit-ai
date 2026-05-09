@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, useCallback, CSSProperties } from 'react';
+import { useEffect, useState, CSSProperties } from 'react';
 import { useTranslations } from 'next-intl';
 import { useTheme } from '@/contexts/ThemeContext';
 import { motion } from 'framer-motion';
@@ -22,141 +22,12 @@ export default function Hero() {
   const t = useTranslations('hero');
   const hudT = useTranslations('hud');
   const { theme } = useTheme();
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [heroText, setHeroText] = useState('');
   const [phraseIdx, setPhraseIdx] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [charIdx, setCharIdx] = useState(0);
-  const heroTimeRef = useRef(0);
-  const animFrameRef = useRef<number>(0);
 
   const phrases = [t('phrases.0'), t('phrases.1'), t('phrases.2')];
-
-  // Hero canvas
-  const getThemeColors = useCallback(() => {
-    const dark = theme === 'dark';
-    return {
-      gridColor: dark ? '0,240,255' : '0,120,180',
-      glow1: dark ? 'rgba(0,240,255,0.06)' : 'rgba(0,120,180,0.06)',
-      glow2: dark ? 'rgba(255,45,111,0.04)' : 'rgba(200,20,60,0.04)',
-      bg0: dark ? '#060B18' : '#EEF3FA',
-      bg1: dark ? '#07102A' : '#E4ECF8',
-      particle1: dark ? '255,45,111' : '200,20,80',
-      particle2: dark ? '0,240,255' : '0,120,180',
-    };
-  }, [theme]);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let W = 0, H = 0;
-    let mouseHX = 0, mouseHY = 0;
-
-    const resize = () => {
-      W = canvas.width = canvas.offsetWidth;
-      H = canvas.height = canvas.offsetHeight;
-    };
-    resize();
-    window.addEventListener('resize', resize);
-
-    const onMove = (e: MouseEvent) => {
-      mouseHX = (e.clientX / window.innerWidth - 0.5) * 2;
-      mouseHY = (e.clientY / window.innerHeight - 0.5) * 2;
-    };
-    window.addEventListener('mousemove', onMove);
-
-    const draw = (t: number) => {
-      ctx.clearRect(0, 0, W, H);
-      const horizon = H * 0.55 + mouseHY * 20;
-      const vanishX = W / 2 + mouseHX * 40;
-      const tc = getThemeColors();
-
-      const bgGrad = ctx.createLinearGradient(0, 0, 0, H);
-      bgGrad.addColorStop(0, tc.bg0);
-      bgGrad.addColorStop(0.5, tc.bg1);
-      bgGrad.addColorStop(1, tc.bg0);
-      ctx.fillStyle = bgGrad;
-      ctx.fillRect(0, 0, W, H);
-
-      const gridLines = 24;
-      const speed = (t * 0.4) % 1;
-
-      ctx.save();
-      for (let i = 0; i <= gridLines; i++) {
-        const p = i / gridLines;
-        const xBottom = (p - 0.5) * W * 2.4 + W / 2;
-        ctx.beginPath();
-        ctx.moveTo(vanishX, horizon);
-        ctx.lineTo(xBottom, H + 20);
-        const alpha = 0.04 + Math.abs(p - 0.5) * 0.07;
-        ctx.strokeStyle = `rgba(${tc.gridColor},${alpha})`;
-        ctx.lineWidth = 0.5;
-        ctx.stroke();
-      }
-
-      const hLines = 16;
-      for (let i = 0; i <= hLines; i++) {
-        const progress = ((i / hLines + speed) % 1);
-        const y = horizon + (H - horizon + 40) * Math.pow(progress, 2.5);
-        const widthAtY = (y - horizon) / (H - horizon) * W * 1.4;
-        const leftX = vanishX - widthAtY / 2;
-        const rightX = vanishX + widthAtY / 2;
-        const alpha = progress * 0.12;
-        ctx.beginPath();
-        ctx.moveTo(leftX, y);
-        ctx.lineTo(rightX, y);
-        ctx.strokeStyle = `rgba(${tc.gridColor},${alpha})`;
-        ctx.lineWidth = 0.5;
-        ctx.stroke();
-      }
-      ctx.restore();
-
-      const glowGrad = ctx.createRadialGradient(vanishX, horizon, 0, vanishX, horizon, W * 0.6);
-      glowGrad.addColorStop(0, tc.glow1);
-      glowGrad.addColorStop(1, 'transparent');
-      ctx.fillStyle = glowGrad;
-      ctx.fillRect(0, 0, W, H);
-
-      const mgGrad = ctx.createRadialGradient(
-        W * 0.2 + mouseHX * 20, H * 0.3 + mouseHY * 15, 0,
-        W * 0.2 + mouseHX * 20, H * 0.3 + mouseHY * 15, W * 0.4
-      );
-      mgGrad.addColorStop(0, tc.glow2);
-      mgGrad.addColorStop(1, 'transparent');
-      ctx.fillStyle = mgGrad;
-      ctx.fillRect(0, 0, W, H);
-
-      ctx.save();
-      for (let i = 0; i < 30; i++) {
-        const px = ((i * 137.5 + t * 12) % W);
-        const py = ((i * 97.3 + t * 6) % (H * 0.6));
-        const alpha = 0.15 + Math.sin(t * 0.8 + i) * 0.1;
-        ctx.beginPath();
-        ctx.arc(px, py, 1, 0, Math.PI * 2);
-        ctx.fillStyle = i % 3 === 0
-          ? `rgba(${tc.particle1},${alpha})`
-          : `rgba(${tc.particle2},${alpha})`;
-        ctx.fill();
-      }
-      ctx.restore();
-    };
-
-    const loop = () => {
-      heroTimeRef.current += 0.016;
-      draw(heroTimeRef.current);
-      animFrameRef.current = requestAnimationFrame(loop);
-    };
-    loop();
-
-    return () => {
-      window.removeEventListener('resize', resize);
-      window.removeEventListener('mousemove', onMove);
-      cancelAnimationFrame(animFrameRef.current);
-    };
-  }, [getThemeColors]);
 
   // Typewriter
   useEffect(() => {
@@ -241,16 +112,6 @@ export default function Hero() {
       alignItems: 'center',
       justifyContent: 'flex-start',
     }}>
-      {/* Canvas fallback — hidden when video loads */}
-      <canvas
-        ref={canvasRef}
-        style={{
-          position: 'absolute', inset: 0, zIndex: 0, width: '100%', height: '100%',
-          opacity: 0,
-          transition: 'opacity 0.5s',
-        }}
-      />
-
       {/* Video background — dark and light mode */}
       <video
         key={theme}
