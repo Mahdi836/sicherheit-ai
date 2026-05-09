@@ -10,6 +10,7 @@ import Nav from '@/components/Nav';
 import CustomCursor from '@/components/CustomCursor';
 import ScrollProgress from '@/components/ScrollProgress';
 import PageTransition from '@/components/PageTransition';
+import IntroAnimation from '@/components/IntroAnimation';
 import JsonLd, { organizationSchema, websiteSchema } from '@/components/JsonLd';
 import '../globals.css';
 
@@ -69,6 +70,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="alternate" hrefLang="de" href={`${BASE_URL}/de`} />
         <link rel="alternate" hrefLang="en" href={`${BASE_URL}/en`} />
         <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}/de`} />
@@ -77,6 +79,7 @@ export default async function LocaleLayout({
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
+            <IntroAnimation />
             <div id="scroll-progress" className="scroll-progress" style={{ width: '0%' }} />
             <ScrollProgress />
             <CustomCursor />
