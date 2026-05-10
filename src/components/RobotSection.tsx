@@ -62,15 +62,15 @@ const QUIZ_TOPICS = [
   },
 ];
 
-// 5 bar x-positions in SVG 0–100 space
-const BAR_X = [8, 22, 36, 57, 71];
-const BAR_W = 8;
+// 5 bars, perfectly symmetric in viewBox 0-100
+// BAR_W=4, side margin=10, gap=15 → bars at 10,29,48,67,86 → centers 12,31,50,69,88
+const BAR_X = [10, 29, 48, 67, 86];
+const BAR_W = 4;
 
 type BarState = 'hidden' | 'solid' | 'broken';
 
-function PrisonOverlay({ bars, solidCount }: { bars: BarState[], solidCount: number }) {
-  const hasVisible = bars.some(b => b !== 'hidden');
-  if (!hasVisible) return null;
+function PrisonOverlay({ bars, solidCount, showScaffold }: { bars: BarState[], solidCount: number, showScaffold: boolean }) {
+  if (!showScaffold) return null;
 
   return (
     <svg
@@ -80,18 +80,18 @@ function PrisonOverlay({ bars, solidCount }: { bars: BarState[], solidCount: num
     >
       <defs>
         <linearGradient id="railGrad" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#111" />
-          <stop offset="20%" stopColor="#777" />
-          <stop offset="50%" stopColor="#bbb" />
-          <stop offset="80%" stopColor="#777" />
-          <stop offset="100%" stopColor="#111" />
+          <stop offset="0%" stopColor="#222" />
+          <stop offset="20%" stopColor="#888" />
+          <stop offset="50%" stopColor="#ccc" />
+          <stop offset="80%" stopColor="#888" />
+          <stop offset="100%" stopColor="#222" />
         </linearGradient>
         <linearGradient id="barGrad" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#111" />
-          <stop offset="30%" stopColor="#666" />
-          <stop offset="50%" stopColor="#aaa" />
-          <stop offset="70%" stopColor="#666" />
-          <stop offset="100%" stopColor="#111" />
+          <stop offset="0%" stopColor="#1a1a1a" />
+          <stop offset="30%" stopColor="#777" />
+          <stop offset="50%" stopColor="#bbb" />
+          <stop offset="70%" stopColor="#777" />
+          <stop offset="100%" stopColor="#1a1a1a" />
         </linearGradient>
         <linearGradient id="brokenGrad" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0%" stopColor="#1a0000" />
@@ -100,65 +100,74 @@ function PrisonOverlay({ bars, solidCount }: { bars: BarState[], solidCount: num
           <stop offset="100%" stopColor="#1a0000" />
         </linearGradient>
         <filter id="redGlow">
-          <feGaussianBlur stdDeviation="1.5" result="blur" />
+          <feGaussianBlur stdDeviation="1.2" result="blur" />
           <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
         </filter>
         <filter id="metalGlow">
-          <feGaussianBlur stdDeviation="0.8" result="blur" />
+          <feGaussianBlur stdDeviation="0.5" result="blur" />
           <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
         </filter>
       </defs>
 
-      {/* Top rail */}
-      <rect x="5" y="1" width="90" height="3.5" rx="1.5" fill="url(#railGrad)" filter="url(#metalGlow)" opacity={0.9} />
-      {/* Bottom rail */}
-      <rect x="5" y="95.5" width="90" height="3.5" rx="1.5" fill="url(#railGrad)" filter="url(#metalGlow)" opacity={0.9} />
+      {/* Top rail — always visible */}
+      <rect x="6" y="1.5" width="88" height="3" rx="1.5" fill="url(#railGrad)" filter="url(#metalGlow)" opacity={0.85} />
+      {/* Bottom rail — always visible */}
+      <rect x="6" y="95.5" width="88" height="3" rx="1.5" fill="url(#railGrad)" filter="url(#metalGlow)" opacity={0.85} />
 
       {bars.map((state, i) => {
-        if (state === 'hidden') return null;
         const x = BAR_X[i];
         const w = BAR_W;
         const cx = x + w / 2;
 
-        if (state === 'broken') {
+        if (state === 'hidden') {
+          // Ghost bar — dashed outline placeholder so user sees prison structure immediately
           return (
-            <g key={i} filter="url(#redGlow)">
-              {/* Top broken piece — angled left */}
-              <rect
-                x={x - 1.5} y={1} width={w} height={42}
-                rx={2} fill="url(#brokenGrad)" opacity={0.75}
-                transform={`rotate(-7, ${cx}, 43)`}
-              />
-              {/* Bottom broken piece — angled right */}
-              <rect
-                x={x + 1.5} y={57} width={w} height={42}
-                rx={2} fill="url(#brokenGrad)" opacity={0.75}
-                transform={`rotate(7, ${cx}, 57)`}
-              />
-              {/* Jagged crack */}
-              <path
-                d={`M${x + 1},40 L${cx - 1},44 L${cx + 2},48 L${cx - 1},52 L${x + w - 1},58`}
-                stroke="#ff4444" strokeWidth={0.9} fill="none" opacity={0.85}
-              />
-              {/* Hot glow at break */}
-              <ellipse cx={cx} cy={49} rx={3} ry={2} fill="#ff3333" opacity={0.35} />
+            <g key={`ghost-${i}`} opacity={0.22}>
+              <rect x={x} y={4.5} width={w} height={91} rx={1.5}
+                fill="none" stroke="#8af0ff" strokeWidth={0.7} strokeDasharray="3 3" />
             </g>
           );
         }
 
-        // Solid bar — drop-in animation via motion.g
+        if (state === 'broken') {
+          return (
+            <g key={`broken-${i}`} filter="url(#redGlow)">
+              {/* Top broken piece — angled left */}
+              <rect
+                x={x - 1} y={4.5} width={w} height={40}
+                rx={1.5} fill="url(#brokenGrad)" opacity={0.72}
+                transform={`rotate(-6, ${cx}, 44)`}
+              />
+              {/* Bottom broken piece — angled right */}
+              <rect
+                x={x + 1} y={55.5} width={w} height={40}
+                rx={1.5} fill="url(#brokenGrad)" opacity={0.72}
+                transform={`rotate(6, ${cx}, 56)`}
+              />
+              {/* Jagged crack line */}
+              <path
+                d={`M${cx - 1},42 L${cx + 1.5},46 L${cx - 1.5},50 L${cx + 1},54`}
+                stroke="#ff5555" strokeWidth={0.8} fill="none" opacity={0.9}
+              />
+              {/* Hot glow at break point */}
+              <ellipse cx={cx} cy={48} rx={2.5} ry={1.8} fill="#ff3333" opacity={0.3} />
+            </g>
+          );
+        }
+
+        // Solid bar — drops in from top rail
         return (
           <motion.g
             key={`bar-${i}`}
             initial={{ scaleY: 0 }}
             animate={{ scaleY: 1 }}
-            transition={{ duration: 0.45, ease: [0.34, 1.4, 0.64, 1] }}
-            style={{ transformOrigin: `${cx}px 2px` }}
+            transition={{ duration: 0.4, ease: [0.34, 1.4, 0.64, 1] }}
+            style={{ transformOrigin: `${cx}px 4.5px` }}
             filter="url(#metalGlow)"
           >
-            <rect x={x} y={1} width={w} height={98} rx={2} fill="url(#barGrad)" opacity={0.92} />
+            <rect x={x} y={4.5} width={w} height={91} rx={1.5} fill="url(#barGrad)" opacity={0.9} />
             {/* Highlight strip */}
-            <rect x={x + 2} y={1} width={1.5} height={98} rx={0.75} fill="rgba(255,255,255,0.18)" />
+            <rect x={x + 1} y={4.5} width={1} height={91} rx={0.5} fill="rgba(255,255,255,0.2)" />
           </motion.g>
         );
       })}
@@ -169,15 +178,12 @@ function PrisonOverlay({ bars, solidCount }: { bars: BarState[], solidCount: num
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.5, duration: 0.4, ease: 'backOut' }}
-          style={{ transformOrigin: '50px 58px' }}
+          style={{ transformOrigin: '50px 55px' }}
         >
-          {/* Lock body */}
-          <rect x={43} y={54} width={14} height={11} rx={2.5} fill="#888" stroke="#555" strokeWidth={0.5} />
-          {/* Shackle */}
-          <path d="M46,54 L46,49 Q50,44.5 54,49 L54,54" stroke="#888" strokeWidth={2.2} fill="none" strokeLinecap="round" />
-          {/* Keyhole */}
-          <circle cx={50} cy={59} r={1.8} fill="#333" />
-          <rect x={49.3} y={59} width={1.4} height={3.5} rx={0.5} fill="#333" />
+          <rect x={44} y={52} width={12} height={9} rx={2} fill="#999" stroke="#666" strokeWidth={0.4} />
+          <path d="M47,52 L47,48 Q50,44 53,48 L53,52" stroke="#999" strokeWidth={1.8} fill="none" strokeLinecap="round" />
+          <circle cx={50} cy={56} r={1.5} fill="#444" />
+          <rect x={49.4} y={56} width={1.2} height={2.8} rx={0.4} fill="#444" />
         </motion.g>
       )}
     </svg>
@@ -585,8 +591,8 @@ export default function RobotSection() {
               <SplineScene scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode" className="w-full h-full" />
             </motion.div>
 
-            {/* Prison bars SVG overlay */}
-            <PrisonOverlay bars={barStates} solidCount={solidCount} />
+            {/* Prison bars SVG overlay — scaffold always visible during quiz */}
+            <PrisonOverlay bars={barStates} solidCount={solidCount} showScaffold={phase === 'quiz'} />
           </div>
 
           {/* Progress dots */}
