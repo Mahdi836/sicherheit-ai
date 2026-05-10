@@ -184,15 +184,12 @@ export default function UeberUnsPage({
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '12px' }}>
               {QUELLEN.map(q => (
-                <a key={q.name} href={q.url} target="_blank" rel="noopener noreferrer" style={{
+                <a key={q.name} href={q.url} target="_blank" rel="noopener noreferrer" className="source-card" style={{
                   display: 'flex', flexDirection: 'column', gap: '4px',
                   background: 'var(--card-bg)', border: '1px solid var(--border)',
                   borderRadius: '10px', padding: '16px 20px', textDecoration: 'none',
                   transition: 'border-color 0.2s',
-                }}
-                  onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(0,240,255,0.3)')}
-                  onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--border)')}
-                >
+                }}>
                   <span style={{ fontFamily: 'var(--mono)', fontSize: '13px', fontWeight: 700, color: 'var(--cyan)' }}>{q.name}</span>
                   <span style={{ fontSize: '13px', color: 'var(--text-dim)' }}>{q.desc}</span>
                 </a>

@@ -693,3 +693,5 @@ nav.scrolled {
   box-shadow: 0 0 6px var(--cyan);
   animation: pulse-dot 2s infinite;
 }
+.source-card:hover { border-color: rgba(0,240,255,0.3) !important; }
+.aiact-src-link:hover { opacity: 1 !important; }

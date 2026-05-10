@@ -356,10 +356,7 @@ export default function AiActPage({
                   { label: 'BSI: KI-Sicherheit', url: 'https://bsi.bund.de/KI' },
                   { label: 'ENISA: AI Act Guide', url: 'https://enisa.europa.eu' },
                 ].map((s, i) => (
-                  <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" style={{ display: 'block', fontSize: '12px', color: 'var(--cyan)', textDecoration: 'none', padding: '6px 0', borderBottom: i < 3 ? '1px solid var(--border)' : 'none', opacity: 0.85 }}
-                    onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
-                    onMouseLeave={e => (e.currentTarget.style.opacity = '0.85')}
-                  >
+                  <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" className="aiact-src-link" style={{ display: 'block', fontSize: '12px', color: 'var(--cyan)', textDecoration: 'none', padding: '6px 0', borderBottom: i < 3 ? '1px solid var(--border)' : 'none', opacity: 0.85 }}>
                     ↗ {s.label}
                   </a>
                 ))}
