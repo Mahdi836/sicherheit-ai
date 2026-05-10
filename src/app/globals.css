@@ -695,3 +695,5 @@ nav.scrolled {
 }
 .source-card:hover { border-color: rgba(0,240,255,0.3) !important; }
 .aiact-src-link:hover { opacity: 1 !important; }
+.contact-input:focus { border-color: var(--border-bright) !important; }
+.contact-input:hover { border-color: rgba(255,255,255,0.15) !important; }

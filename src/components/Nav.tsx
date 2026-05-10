@@ -76,6 +76,7 @@ export default function Nav({ locale }: NavProps) {
     { href: `/${locale}/ai-act`, label: t('aiact') },
     { href: `/${locale}/blog`, label: t('insights') },
     { href: `/${locale}/ueber-uns`, label: t('ueber') },
+    { href: `/${locale}/kontakt`, label: t('kontakt') },
   ];
 
   const navHeight = scrolled ? '60px' : '72px';

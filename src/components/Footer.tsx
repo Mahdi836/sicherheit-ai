@@ -85,6 +85,7 @@ export default function Footer({ locale }: { locale: string }) {
                 { label: t('imprint'), href: '#' },
                 { label: t('terms'), href: '#' },
                 { label: t('gdpr'), href: '#' },
+                { label: locale === 'de' ? 'Kontakt' : 'Contact', href: `/${locale}/kontakt` },
               ],
             },
           ].map((col, i) => (

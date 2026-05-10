@@ -298,14 +298,25 @@ export default function UeberUnsPage({
                 ? 'Für Beratungsanfragen, Fragen zu unseren Inhalten oder Kooperationsanfragen stehen wir per E-Mail zur Verfügung.'
                 : 'For consulting inquiries, questions about our content or partnership requests, we are available by email.'}
             </p>
-            <a href="mailto:info@sicherheit.ai" style={{
-              display: 'inline-flex', alignItems: 'center', gap: '8px',
-              background: 'linear-gradient(135deg, var(--cyan) 0%, #007A9A 100%)',
-              color: '#060B18', fontWeight: 700, fontSize: '15px',
-              padding: '13px 28px', borderRadius: '8px', textDecoration: 'none',
-            }}>
-              info@sicherheit.ai →
-            </a>
+            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+              <Link href={`/${locale}/kontakt`} style={{
+                display: 'inline-flex', alignItems: 'center', gap: '8px',
+                background: 'linear-gradient(135deg, var(--cyan) 0%, #007A9A 100%)',
+                color: '#060B18', fontWeight: 700, fontSize: '15px',
+                padding: '13px 28px', borderRadius: '8px', textDecoration: 'none',
+              }}>
+                {isDE ? 'Zum Kontaktformular →' : 'Contact form →'}
+              </Link>
+              <a href="mailto:mahdi.mahmoud2008@gmail.com" style={{
+                display: 'inline-flex', alignItems: 'center', gap: '8px',
+                background: 'transparent',
+                border: '1px solid var(--border)',
+                color: 'var(--text-dim)', fontWeight: 600, fontSize: '15px',
+                padding: '13px 28px', borderRadius: '8px', textDecoration: 'none',
+              }}>
+                mahdi.mahmoud2008@gmail.com
+              </a>
+            </div>
           </section>
         </div>
       </main>
