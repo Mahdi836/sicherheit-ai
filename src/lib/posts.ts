@@ -432,7 +432,459 @@ POST /guestaccess.aspx HTTP/1.1
 </ol>`,
   },
 
-  // ── 5. Ransomware-as-a-Service ───────────────────────────────────────────────
+  // ── 5. WormGPT ─────────────────────────────────────────────────────────────
+  {
+    id: 'post-wormgpt-ki-phishing-tool',
+    slug: 'wormgpt-ki-phishing-tool',
+    title: 'WormGPT: Das KI-Tool, das Phishing-Angriffe auf ein neues Level hebt',
+    excerpt: 'WormGPT ist ein unkontrolliertes Large Language Model, das gezielt für Cyberkriminelle entwickelt wurde. Es erstellt täuschend echte Phishing-Mails ohne Sicherheitsgrenzen – und verzeichnet laut SlashNext einen Anstieg von 340% bei KI-generierten Phishing-Angriffen.',
+    content: `<h2>Was ist WormGPT?</h2>
+<p>WormGPT ist ein Large Language Model (LLM), das auf Basis von Open-Source-Modellen entwickelt und speziell auf schädliche Inhalte trainiert wurde. Anders als kommerzielle Modelle wie ChatGPT oder Claude verfügt WormGPT über keinerlei Sicherheitsmechanismen, Inhaltsfilter oder ethische Leitlinien. Es wurde erstmals im Juli 2023 im Darknet-Forum "hackforums" angeboten und richtete sich explizit an Cyberkriminelle.</p>
+<p>Das Modell basiert nach Angaben seines Erstellers auf dem Open-Source-Modell GPT-J von EleutherAI, wurde jedoch mit Datensätzen aus dem Bereich Malware, Exploits und Phishing-Korrespondenz nachtrainiert. Das Ergebnis: Ein Sprachmodell, das auf Anfrage professionell formulierte Betrugs-E-Mails, Business Email Compromise (BEC)-Angriffe und Schadcode erstellt, ohne die Anfrage zu verweigern.</p>
+<p>WormGPT ist nicht das einzige Modell seiner Art. Nachfolger wie FraudGPT, DarkBERT und EscapeGPT folgen demselben Prinzip. Sie werden im Darknet als Abonnement-Dienst angeboten, oft für 60 bis 200 US-Dollar pro Monat.</p>
+
+<h2>Wie funktioniert WormGPT bei Phishing-Angriffen?</h2>
+<p>Der Einsatz von WormGPT in Phishing-Kampagnen folgt einem strukturierten Ablauf, der traditionelle, manuell erstellte Phishing-Mails in mehrfacher Hinsicht übertrifft.</p>
+<h3>Schritt 1: Zielgerichtete Personalisierung</h3>
+<p>Angreifer füttern WormGPT mit öffentlich verfügbaren Informationen über das Opfer: LinkedIn-Profile, Unternehmenswebseiten, Pressemitteilungen, E-Mail-Signaturen. Das Modell generiert daraus eine E-Mail, die spezifisch auf die Rolle, den Arbeitgeber und aktuelle Ereignisse im Leben des Opfers zugeschnitten ist.</p>
+<h3>Schritt 2: Fehlerfreie Sprache in jeder Sprache</h3>
+<p>Klassische Phishing-Mails sind oft durch schlechte Grammatik erkennbar. WormGPT erstellt fehlerfreie, stilistisch konsistente Texte in Deutsch, Englisch, Französisch und zahlreichen anderen Sprachen. Das Sicherheitsmerkmal "schlechtes Deutsch" entfällt vollständig.</p>
+<h3>Schritt 3: Business Email Compromise (BEC)</h3>
+<p>WormGPT wurde in einer Analyse der Sicherheitsfirma SlashNext speziell auf BEC-Angriffe getestet. Das Ergebnis waren E-Mails, die vorgeben, von Vorgesetzten oder Geschäftspartnern zu stammen, und Mitarbeiter zur dringenden Überweisung von Geldbeträgen oder zur Weitergabe von Zugangsdaten auffordern. Die generierten Texte waren laut SlashNext "besorgniserregend effektiv".</p>
+
+<h2>Warum ist WormGPT gefährlicher als traditionelles Phishing?</h2>
+<p>Laut dem SlashNext State of Phishing Report 2023 verzeichnete die Sicherheitsbranche seit der Verfügbarkeit von WormGPT und ähnlichen Tools einen Anstieg von <strong>340% bei KI-generierten Phishing-Angriffen</strong>. Dieser Anstieg erklärt sich durch mehrere strukturelle Vorteile, die KI-gestütztes Phishing gegenüber traditionellen Methoden besitzt.</p>
+<ul>
+<li><strong>Skalierbarkeit:</strong> Ein einzelner Angreifer kann mit WormGPT innerhalb von Minuten Tausende individualisierter Phishing-Mails erstellen, die früher einen ganzen Tag manuelle Arbeit erfordert hätten.</li>
+<li><strong>Niedrige Einstiegshürde:</strong> Technisches Wissen ist kaum erforderlich. WormGPT wird mit einfachen Textprompts gesteuert, ähnlich wie ein normaler Chatbot.</li>
+<li><strong>Überwindung klassischer Erkennungsmuster:</strong> Spam-Filter und E-Mail-Security-Lösungen sind auf statistische Muster in Phishing-Mails trainiert. KI-generierte Texte weichen von diesen Mustern ab und umgehen Filter häufiger.</li>
+<li><strong>Kombinierbarkeit mit anderen Tools:</strong> WormGPT wird oft in Kombination mit OSINT-Tools, geleakten Datenbankdumps und automatisierten Versandinfrastrukturen genutzt, was vollautomatisierte Angriffskampagnen ermöglicht.</li>
+</ul>
+<p>Proofpoint berichtet in seinem Human Factor Report 2023, dass BEC-Angriffe bereits vor der KI-Welle jährlich Schäden von über 50 Milliarden US-Dollar verursacht haben. Die Verfügbarkeit von WormGPT beschleunigt diesen Trend erheblich.</p>
+
+<h2>Wie erkennt man KI-generierte Phishing-Mails?</h2>
+<p>Die klassischen Erkennungsmerkmale für Phishing – Rechtschreibfehler, unpersönliche Anrede, generische Inhalte – greifen bei WormGPT-Mails nicht mehr zuverlässig. Dennoch gibt es Hinweise, auf die Empfänger achten können.</p>
+<h3>Inhaltliche Warnsignale</h3>
+<ul>
+<li>Ungewöhnliche Dringlichkeit: "Sofortige Überweisung erforderlich", "Handeln Sie innerhalb von 2 Stunden"</li>
+<li>Aufforderungen, normale Prozesse zu umgehen ("Bitte senden Sie direkt an mich, nicht über das System")</li>
+<li>Anfragen, die von der normalen Kommunikationsstruktur abweichen (CEO schreibt plötzlich direkt an Buchhalter)</li>
+<li>Links zu Domains, die der echten Unternehmensadresse ähneln, aber leicht abweichen (z.B. company-de.com statt company.com)</li>
+</ul>
+<h3>Technische Prüfmethoden</h3>
+<ul>
+<li>E-Mail-Header analysieren: Stimmt die Absenderadresse mit dem angezeigten Namen überein?</li>
+<li>DMARC, DKIM und SPF-Prüfung: Wurde die E-Mail tatsächlich vom angegebenen Server gesendet?</li>
+<li>Links vor dem Klicken per Hover oder separatem Sicherheitstool überprüfen</li>
+<li>Verifizierung über alternativen Kanal: Den angeblichen Absender per Telefon oder persönlich bestätigen</li>
+</ul>
+
+<h2>Schutzmaßnahmen für Unternehmen und Privatpersonen</h2>
+<p>Angesichts der verbesserten Qualität von KI-Phishing müssen Schutzmaßnahmen über reine Erkennungslogik hinausgehen.</p>
+<ul>
+<li><strong>Multi-Faktor-Authentifizierung (MFA):</strong> Selbst wenn Zugangsdaten durch Phishing erbeutet werden, verhindert MFA den Zugriff auf Konten. CISA empfiehlt MFA als Basisschutz für alle Organisationen.</li>
+<li><strong>Security Awareness Training:</strong> Mitarbeiter müssen regelmäßig auf aktuelle Phishing-Methoden geschult werden. Simulierte Phishing-Tests erhöhen die Erkennungsrate nachweislich.</li>
+<li><strong>E-Mail-Security-Gateway:</strong> Lösungen wie Proofpoint, Mimecast oder Microsoft Defender for Office 365 analysieren eingehende Mails auf verdächtige Muster, auch bei KI-generierten Texten.</li>
+<li><strong>Zero-Trust-Prinzip bei Überweisungen:</strong> Jede Zahlungsanforderung per E-Mail muss durch einen zweiten, unabhängigen Kanal bestätigt werden, unabhängig vom angeblichen Absender.</li>
+<li><strong>DMARC-Richtlinien:</strong> Unternehmen sollten DMARC auf "reject" setzen, um zu verhindern, dass ihre Domain für gefälschte Absenderadressen missbraucht wird.</li>
+<li><strong>Incident Response Plan:</strong> Im Falle eines erfolgreichen Angriffs muss ein klarer Prozess für Sofortmaßnahmen, Meldepflichten und Kommunikation vorhanden sein.</li>
+</ul>
+<blockquote>
+<p>"Die Frage ist nicht mehr ob KI-gestütztes Phishing Ihre Organisation trifft, sondern wann. Die Vorbereitung entscheidet über den Schaden." – CISA Cybersecurity Advisory, 2023</p>
+</blockquote>`,
+    category: 'KI-Bedrohung',
+    categoryColor: '#FF3B5C',
+    categoryBg: 'rgba(255,59,92,0.1)',
+    author: 'sicherheit.ai Redaktion',
+    authorRole: 'Basierend auf: SlashNext State of Phishing Report 2023, Proofpoint Human Factor Report 2023, CISA',
+    publishedAt: '2026-05-10',
+    readTime: 10,
+    imageGradient: 'linear-gradient(135deg, #1A0008 0%, #2D000F 40%, #1A0008 100%)',
+    imageAlt: 'WormGPT Phishing KI-Tool Visualisierung',
+    badge: 'NEU',
+    badgeColor: '#FF3B5C',
+    tags: ['WormGPT', 'Phishing', 'KI-Bedrohung', 'BEC', 'E-Mail-Sicherheit', 'Darknet-KI'],
+    faqs: [
+      { q: 'Ist WormGPT noch aktiv verfügbar?', a: 'Der ursprüngliche Entwickler von WormGPT hat den Dienst im August 2023 eingestellt, jedoch sind zahlreiche Nachfolgemodelle wie FraudGPT, DarkBERT und weitere im Darknet weiterhin aktiv und werden als Abonnement-Dienst angeboten. Die Verfügbarkeit dieser Tools ist dauerhaft und nimmt zu.' },
+      { q: 'Wie unterscheidet sich WormGPT von ChatGPT?', a: 'ChatGPT und vergleichbare kommerzielle Modelle verfügen über umfangreiche Sicherheitsmechanismen und Inhaltsfilter, die das Erstellen von Phishing-Mails oder Schadcode verhindern. WormGPT wurde gezielt ohne diese Filter trainiert und verweigert keine schädlichen Anfragen. Es ist außerdem auf Malware-Datensätze spezialisiert, was seine Ausgaben in diesem Bereich effektiver macht.' },
+      { q: 'Kann ein Anti-Spam-Filter KI-generierte Phishing-Mails erkennen?', a: 'Klassische regelbasierte Spam-Filter versagen häufig bei KI-generierten Mails, da diese keine typischen Phishing-Muster wie Rechtschreibfehler oder bekannte Absender-Blacklists aufweisen. Moderne KI-gestützte E-Mail-Security-Lösungen mit verhaltensbasierter Analyse sind deutlich effektiver, bieten aber ebenfalls keinen vollständigen Schutz. Die menschliche Überprüfung bleibt unverzichtbar.' },
+      { q: 'Was sollte ich tun, wenn ich eine verdächtige E-Mail erhalte?', a: 'Klicken Sie auf keine Links und öffnen Sie keine Anhänge. Verifizieren Sie den angeblichen Absender über einen unabhängigen Kanal (Telefon, persönlicher Kontakt). Melden Sie die E-Mail Ihrer IT-Abteilung oder Ihrem E-Mail-Anbieter. Im Zweifelsfall gilt: Lieber einmal zu viel nachfragen als einmal zu wenig.' },
+      { q: 'Sind kleine Unternehmen auch Ziele von WormGPT-Phishing?', a: 'Ja, Cyberkriminelle nutzen KI-Tools wie WormGPT explizit, um Angriffe zu skalieren und auch kleinere Unternehmen anzugreifen, die bislang aufgrund des manuellen Aufwands für Einzelangriffe uninteressant waren. Die niedrigen Kosten und hohe Automatisierung machen es wirtschaftlich, auch Unternehmen mit wenigen Mitarbeitern gezielt anzugreifen.' },
+    ],
+    sources: [
+      { title: 'SlashNext State of Phishing Report 2023', url: 'https://slashnext.com/state-of-phishing-2023/' },
+      { title: 'Proofpoint Human Factor Report 2023', url: 'https://www.proofpoint.com/us/resources/threat-reports/human-factor' },
+      { title: 'CISA Phishing Guidance', url: 'https://www.cisa.gov/topics/cyber-threats-and-advisories/phishing' },
+    ],
+  },
+
+  // ── 6. Shadow AI ────────────────────────────────────────────────────────────
+  {
+    id: 'post-shadow-ai-unternehmen-risiken',
+    slug: 'shadow-ai-unternehmen-risiken',
+    title: 'Shadow AI: Wenn Mitarbeiter KI-Tools ohne IT-Wissen nutzen',
+    excerpt: 'Shadow AI bezeichnet den unkontrollierten Einsatz von KI-Tools durch Mitarbeiter ohne Wissen der IT-Abteilung. Die Folgen reichen von DSGVO-Verstößen bis zu massiven Datenlecks. Wie Unternehmen das Risiko erkennen und kontrollieren.',
+    content: `<h2>Was ist Shadow AI?</h2>
+<p>Shadow AI ist ein Phänomen, das sich aus dem älteren Konzept der "Shadow IT" ableitet: Mitarbeiter nutzen Softwaretools und digitale Dienste, die von der IT-Abteilung weder genehmigt noch kontrolliert werden. Im Kontext künstlicher Intelligenz bedeutet dies den Einsatz von KI-Anwendungen wie ChatGPT, Google Gemini, Claude, Copilot oder spezialisierten KI-Tools für Bildgenerierung, Transkription und Datenanalyse, ohne dass die IT-Abteilung darüber informiert ist oder diese Nutzung in die Sicherheitsarchitektur des Unternehmens eingebettet ist.</p>
+<p>Das Ausmaß ist erheblich: Laut einer Umfrage von Salesforce aus dem Jahr 2024 nutzen <strong>55% der Mitarbeiter KI-Tools bei der Arbeit</strong>, und über die Hälfte davon tut dies ohne explizite Genehmigung des Arbeitgebers. Eine separate Studie von Cyberhaven aus dem Jahr 2023 zeigte, dass 10,7% aller in ChatGPT eingegebenen Daten als vertraulich klassifiziert werden könnten.</p>
+<p>Shadow AI entsteht nicht aus böser Absicht. Mitarbeiter suchen nach effektiveren Wegen, ihre Arbeit zu erledigen, und KI-Tools bieten echte Produktivitätsgewinne. Das Problem liegt in der fehlenden Kontrolle über die Datenweitergabe, die Verarbeitung durch Drittanbieter und die Qualität der KI-Ausgaben.</p>
+
+<h2>Konkrete Risiken durch Shadow AI im Unternehmensumfeld</h2>
+<h3>Datenlecks und Verlust von Geschäftsgeheimnissen</h3>
+<p>Wenn Mitarbeiter vertrauliche Unternehmensinformationen in externe KI-Dienste eingeben, verlassen diese Daten die Kontrolle des Unternehmens. Viele KI-Anbieter nutzen eingegebene Daten standardmäßig zum Training ihrer Modelle, sofern Nutzer dies nicht explizit deaktivieren. Samsung musste im April 2023 die Nutzung von ChatGPT intern sperren, nachdem Mitarbeiter in kurzer Zeit dreimal vertraulichen Quellcode und Besprechungsnotizen in das System eingegeben hatten.</p>
+<h3>DSGVO-Verstöße und regulatorisches Risiko</h3>
+<p>Die Weitergabe personenbezogener Daten an externe KI-Dienste ohne entsprechende Datenverarbeitungsvereinbarungen (DPA) verstößt gegen die Datenschutz-Grundverordnung. Besonders kritisch: Kundendaten, Personalakten oder medizinische Informationen dürfen nicht ohne Rechtsgrundlage an Drittanbieter übermittelt werden.</p>
+<h3>Unkontrollierte und fehlerhafte KI-Outputs</h3>
+<p>KI-Modelle produzieren Fehler, sogenannte Halluzinationen. Wenn Mitarbeiter KI-generierte Inhalte ohne Überprüfung in Berichte, Angebote oder Kundenkommunikation übernehmen, entstehen Qualitätsprobleme und Haftungsrisiken.</p>
+<h3>Lizenzverletzungen und rechtliche Risiken</h3>
+<p>KI-generierte Texte, Bilder und Code können urheberrechtlich geschütztem Material ähneln. Unternehmen, die solche Outputs ohne Kenntnis der Herkunft verwenden, setzen sich rechtlichen Risiken aus, ohne es zu wissen.</p>
+
+<h2>Wie Unternehmen Shadow AI erkennen</h2>
+<ul>
+<li><strong>Netzwerk-Monitoring:</strong> Analyse des ausgehenden Datenverkehrs auf Verbindungen zu bekannten KI-Diensten (OpenAI-API, Anthropic, Google AI-Endpunkte, Midjourney etc.)</li>
+<li><strong>Browser-Plugin-Inventur:</strong> Viele KI-Tools werden als Browser-Erweiterungen genutzt. Eine Inventur installierter Plugins auf Unternehmensgeräten deckt Shadow-AI-Nutzung auf.</li>
+<li><strong>Mitarbeiterbefragungen:</strong> Anonyme Umfragen zur genutzten Software liefern oft ehrlichere Ergebnisse als technisches Monitoring.</li>
+<li><strong>SaaS-Discovery-Tools:</strong> Spezialisierte Tools wie Torii, BetterCloud oder Productiv analysieren OAuth-Verbindungen und SaaS-Nutzung in Unternehmensumgebungen.</li>
+</ul>
+
+<h2>AI-Governance einführen: Der strukturierte Ansatz</h2>
+<p>Das Ziel einer AI-Governance-Strategie ist nicht das Verbot von KI-Tools, sondern deren kontrollierte Integration. Ein Verbot ohne Alternative treibt die Nutzung weiter in den Schatten.</p>
+<h3>Schritt 1: KI-Richtlinie entwickeln</h3>
+<p>Eine klare, schriftliche Richtlinie definiert, welche KI-Tools erlaubt sind, welche Datenklassen nicht eingegeben werden dürfen und welche Ausgaben einer Überprüfung bedürfen.</p>
+<h3>Schritt 2: Genehmigte Tools bereitstellen</h3>
+<p>Unternehmen sollten sichere, datenschutzkonforme KI-Lösungen anbieten, die Mitarbeiterbedürfnisse erfüllen. Microsoft Copilot for Microsoft 365, Google Workspace Gemini oder selbst gehostete Modelle bieten KI-Funktionalität mit Unternehmenskontrolle.</p>
+<h3>Schritt 3: Schulung und Bewusstseinsbildung</h3>
+<p>Mitarbeiter müssen verstehen, warum bestimmte Tools riskant sind, nicht nur, dass sie verboten sind.</p>
+<h3>Schritt 4: Kontinuierliches Monitoring</h3>
+<p>Das KI-Tool-Ökosystem verändert sich wöchentlich. Regelmäßige Reviews der genutzten Tools und kontinuierliches Netzwerk-Monitoring sind erforderlich.</p>
+<blockquote>
+<p>"Unternehmen, die KI-Nutzung verbieten ohne Alternativen anzubieten, verlieren den Produktivitätsvorteil und haben die Sicherheitsrisiken trotzdem. Die Lösung ist kontrolliertes Enablement, keine Prohibition." – Gartner IT-Report 2024</p>
+</blockquote>`,
+    category: 'Unternehmensrisiko',
+    categoryColor: '#A78BFA',
+    categoryBg: 'rgba(167,139,250,0.1)',
+    author: 'sicherheit.ai Redaktion',
+    authorRole: 'Basierend auf: Salesforce AI Survey 2024, Cyberhaven Research 2023, Gartner IT-Report 2024',
+    publishedAt: '2026-05-09',
+    readTime: 9,
+    imageGradient: 'linear-gradient(135deg, #0D0A1A 0%, #1A1040 40%, #0D0A1A 100%)',
+    imageAlt: 'Shadow AI Unternehmensrisiko Visualisierung',
+    tags: ['Shadow AI', 'KI-Governance', 'DSGVO', 'Datenleck', 'Unternehmensrisiko', 'Shadow IT'],
+    faqs: [
+      { q: 'Ist die private Nutzung von ChatGPT durch Mitarbeiter automatisch ein Problem?', a: 'Es kommt auf den Inhalt an. Die Nutzung von ChatGPT für allgemeine Recherchen oder zum Erstellen von Textentwürfen ohne vertrauliche Unternehmensdaten ist in der Regel unkritisch. Problematisch wird es, wenn Kundendaten, interne Finanzzahlen, Quellcode oder andere vertrauliche Informationen eingegeben werden.' },
+      { q: 'Was ist der Unterschied zwischen Shadow AI und genehmigter KI-Nutzung?', a: 'Bei genehmigter KI-Nutzung hat die IT-Abteilung den Dienst geprüft, eine Datenverarbeitungsvereinbarung mit dem Anbieter abgeschlossen, Datenschutzeinstellungen konfiguriert und Richtlinien für den Umgang mit Outputs definiert. Shadow AI fehlt dieser gesamte Rahmen.' },
+      { q: 'Welche Branchen sind besonders von Shadow AI betroffen?', a: 'Branchen mit hohem regulatorischen Druck und gleichzeitig großem Produktivitätsdruck sind am stärksten gefährdet: Finanzdienstleistungen, Gesundheitswesen, Rechtsberatung und Unternehmensberatung.' },
+      { q: 'Können Unternehmen für Shadow-AI-Verstöße ihrer Mitarbeiter haftbar gemacht werden?', a: 'Ja. Nach DSGVO ist das Unternehmen als Verantwortlicher für die Datenverarbeitung haftbar, unabhängig davon, ob ein Mitarbeiter eigenständig handelt. Die Aufsichtsbehörden prüfen, ob das Unternehmen ausreichende technische und organisatorische Maßnahmen implementiert hat.' },
+      { q: 'Wie lange dauert die Implementierung einer AI-Governance-Strategie?', a: 'Eine Basisrichtlinie und erste Schulungen können innerhalb von zwei bis vier Wochen entwickelt werden. Die vollständige Implementierung mit technischem Monitoring, genehmigten Tool-Alternativen und regelmäßigen Review-Prozessen benötigt typischerweise drei bis sechs Monate.' },
+    ],
+    sources: [
+      { title: 'Salesforce State of AI Research 2024', url: 'https://www.salesforce.com/news/stories/ai-at-work-research/' },
+      { title: 'Cyberhaven AI Data Report 2023', url: 'https://www.cyberhaven.com/blog/4-2-of-workers-have-pasted-company-data-into-chatgpt' },
+      { title: 'Gartner Top Strategic Technology Trends 2024', url: 'https://www.gartner.com/en/information-technology/insights/top-technology-trends' },
+    ],
+  },
+
+  // ── 7. EU AI Act verbotene Systeme ──────────────────────────────────────────
+  {
+    id: 'post-eu-ai-act-verbotene-ki-systeme',
+    slug: 'eu-ai-act-verbotene-ki-systeme',
+    title: 'EU AI Act: Diese KI-Systeme sind in der EU vollständig verboten',
+    excerpt: 'Der EU AI Act definiert klare Verbote für KI-Systeme, die Grundrechte gefährden. Social Scoring, Echtzeit-Biometrieüberwachung und unterschwellige Manipulation sind ab Februar 2025 verboten. Bußgelder erreichen bis zu 35 Millionen Euro.',
+    content: `<h2>Was ist der EU AI Act?</h2>
+<p>Der EU Artificial Intelligence Act (EU AI Act) ist die weltweit erste umfassende gesetzliche Regulierung für künstliche Intelligenz. Er wurde am 13. März 2024 vom Europäischen Parlament verabschiedet und trat am 1. August 2024 in Kraft. Das Gesetz verfolgt einen risikobasierten Ansatz: KI-Systeme werden in vier Risikokategorien eingeteilt, von unakzeptablem Risiko (verboten) über Hochrisiko (streng reguliert) bis zu minimalem Risiko (kaum Anforderungen).</p>
+<p>Der EU AI Act gilt für alle Anbieter, die KI-Systeme in der EU in Verkehr bringen, unabhängig davon, ob das Unternehmen seinen Sitz in der EU hat. Die Umsetzung erfolgt gestaffelt: Erste Verbote gelten ab Februar 2025.</p>
+
+<h2>Vollständig verbotene KI-Systeme (Artikel 5)</h2>
+<p>Artikel 5 des EU AI Act listet KI-Anwendungen auf, die als Bedrohung für Grundrechte eingestuft werden und in der EU vollständig verboten sind. Diese Verbote gelten ab <strong>2. Februar 2025</strong>.</p>
+<h3>1. KI-basiertes Social Scoring</h3>
+<p>Verboten sind KI-Systeme, die das Verhalten natürlicher Personen oder sozialer Gruppen bewerten und auf Basis dieser Bewertung zu Benachteiligungen führen. Dies betrifft insbesondere staatliche Social-Credit-Systeme, aber auch privatwirtschaftliche Scoring-Systeme, die über legitime Kreditwürdigkeitsprüfungen hinausgehen.</p>
+<h3>2. Unterschwellige Manipulation</h3>
+<p>KI-Systeme, die Techniken einsetzen, die außerhalb des Bewusstseins einer Person wirken (subliminale Techniken), um das Verhalten von Personen auf eine Weise zu beeinflussen, die ihnen schaden kann, sind verboten.</p>
+<h3>3. Biometrische Kategorisierung für sensible Merkmale</h3>
+<p>Verboten ist die Nutzung biometrischer Kategorisierungssysteme, die natürliche Personen anhand sensibler Merkmale wie politischer oder religiöser Überzeugung, sexueller Orientierung oder Rasse einteilen.</p>
+<h3>4. Echtzeit-Biometrie im öffentlichen Raum (mit Ausnahmen)</h3>
+<p>Der Einsatz von KI-Systemen zur biometrischen Echtzeit-Fernidentifikation in öffentlich zugänglichen Räumen durch Strafverfolgungsbehörden ist grundsätzlich verboten. Ausnahmen gelten nur für sehr schwere Straftaten und müssen gerichtlich genehmigt werden.</p>
+<h3>5. Emotion Recognition in sensiblen Kontexten</h3>
+<p>KI-Systeme zur Erkennung von Emotionen am Arbeitsplatz und in Bildungseinrichtungen sind verboten. Ausnahmen gelten für medizinische oder sicherheitsrelevante Anwendungen.</p>
+<h3>6. Predictive Policing auf Basis persönlicher Merkmale</h3>
+<p>Verboten sind KI-Systeme, die ausschließlich auf Basis von Persönlichkeitsmerkmalen oder früheren Straftaten das Risiko einer Person für zukünftige Straftaten vorhersagen.</p>
+
+<h2>Hochrisiko-KI-Systeme und ihre Pflichten</h2>
+<p>Neben den verbotenen KI-Systemen definiert der EU AI Act eine Kategorie von Hochrisiko-KI, die streng reguliert, aber erlaubt ist:</p>
+<ul>
+<li>KI in kritischer Infrastruktur (Energie, Wasser, Verkehr)</li>
+<li>KI-gestützte Einstellungssysteme und HR-Tools</li>
+<li>KI in der Bildung (Bewertung von Schülern und Studierenden)</li>
+<li>KI in Strafverfolgung und Justiz</li>
+<li>KI in der Kreditwürdigkeitsprüfung und Versicherungen</li>
+</ul>
+<p>Für Hochrisiko-KI gelten umfangreiche Pflichten: Risikomanagement-System, Datenqualitätssicherung, technische Dokumentation, Transparenzpflichten, menschliche Aufsicht und CE-Kennzeichnung.</p>
+
+<h2>Zeitplan der Verbote und Bußgelder</h2>
+<ul>
+<li><strong>1. August 2024:</strong> Inkrafttreten des Gesetzes</li>
+<li><strong>2. Februar 2025:</strong> Verbote für unakzeptable Risiken (Artikel 5)</li>
+<li><strong>2. August 2025:</strong> Regeln für General-Purpose AI (GPAI)</li>
+<li><strong>2. August 2026:</strong> Vollständige Anwendung aller Pflichten für Hochrisiko-KI</li>
+</ul>
+<p>Die Bußgelder: <strong>Bis 35 Millionen Euro oder 7% des weltweiten Jahresumsatzes</strong> für Verstöße gegen die Verbote nach Artikel 5. Bis 15 Millionen Euro oder 3% für andere Verstöße.</p>
+<blockquote>
+<p>"Der EU AI Act setzt globale Standards. Unternehmen, die heute in Compliance investieren, vermeiden nicht nur Bußgelder, sondern sichern sich einen Wettbewerbsvorteil auf dem europäischen Markt." – Europäisches Parlament, März 2024</p>
+</blockquote>`,
+    category: 'EU AI Act',
+    categoryColor: '#00F0FF',
+    categoryBg: 'rgba(0,240,255,0.08)',
+    author: 'sicherheit.ai Redaktion',
+    authorRole: 'Basierend auf: EU AI Act (Verordnung 2024/1689), Europäisches Parlament, European AI Office',
+    publishedAt: '2026-05-08',
+    readTime: 11,
+    imageGradient: 'linear-gradient(135deg, #000D1A 0%, #001F3D 40%, #000D1A 100%)',
+    imageAlt: 'EU AI Act verbotene KI-Systeme Übersicht',
+    badge: 'Aktuell',
+    badgeColor: '#00F0FF',
+    tags: ['EU AI Act', 'Regulierung', 'Verbotene KI', 'Biometrie', 'Social Scoring', 'Compliance'],
+    faqs: [
+      { q: 'Gilt der EU AI Act auch für Unternehmen außerhalb der EU?', a: 'Ja. Der EU AI Act gilt für alle Anbieter, die KI-Systeme auf dem EU-Markt in Verkehr bringen oder in Betrieb nehmen, unabhängig vom Unternehmenssitz. Dies betrifft explizit US-amerikanische, chinesische und andere internationale Technologieunternehmen.' },
+      { q: 'Was passiert, wenn ein Unternehmen ein verbotenes KI-System bereits einsetzt?', a: 'Unternehmen müssen verbotene Systeme bis zum 2. Februar 2025 einstellen. Es gibt keine Übergangsfrist. Die zuständigen nationalen Marktaufsichtsbehörden können Bußgelder verhängen und den sofortigen Betriebsstopp anordnen.' },
+      { q: 'Wie unterscheiden sich "verbotene KI" und "Hochrisiko-KI"?', a: 'Verbotene KI nach Artikel 5 ist vollständig untersagt. Hochrisiko-KI ist erlaubt, unterliegt aber strengen Anforderungen: technische Dokumentation, Konformitätsbewertung, Registrierung und menschliche Aufsicht.' },
+      { q: 'Sind KI-Chatbots wie ChatGPT vom EU AI Act betroffen?', a: 'Ja. Große Sprachmodelle fallen unter die Kategorie "General-Purpose AI" (GPAI). Ab August 2025 gelten für GPAI-Anbieter spezifische Transparenz-, Dokumentations- und Sicherheitspflichten.' },
+      { q: 'Was ist die European AI Office und welche Rolle spielt sie?', a: 'Das European AI Office wurde als zentrale EU-Behörde für die Durchsetzung des EU AI Acts eingerichtet. Es ist primär für die Aufsicht über GPAI-Anbieter zuständig und koordiniert die Entwicklung von Verhaltenskodizes und technischen Standards.' },
+    ],
+    sources: [
+      { title: 'EU AI Act Volltext (Verordnung 2024/1689)', url: 'https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R1689' },
+      { title: 'European AI Office', url: 'https://digital-strategy.ec.europa.eu/en/policies/ai-office' },
+      { title: 'Europäisches Parlament: AI Act erklärt', url: 'https://www.europarl.europa.eu/topics/de/article/20230601STO93804/ki-gesetz-erste-regulierung-der-kunstlichen-intelligenz' },
+    ],
+  },
+
+  // ── 8. NIS2 Mittelstand ─────────────────────────────────────────────────────
+  {
+    id: 'post-nis2-richtlinie-mittelstand',
+    slug: 'nis2-richtlinie-mittelstand',
+    title: 'NIS2-Richtlinie: Was der Mittelstand jetzt wissen und tun muss',
+    excerpt: 'Die NIS2-Richtlinie erweitert die Cybersicherheitspflichten auf zehntausende deutsche Unternehmen. Ab 50 Mitarbeitern oder 10 Millionen Euro Umsatz in kritischen Sektoren drohen bei Verstößen Bußgelder bis 10 Millionen Euro. Ein Überblick für den Mittelstand.',
+    content: `<h2>Was ist die NIS2-Richtlinie?</h2>
+<p>NIS2 steht für "Network and Information Security Directive 2" – die zweite EU-Richtlinie zur Netz- und Informationssicherheit. Sie wurde am 14. Dezember 2022 vom Europäischen Rat verabschiedet. In Deutschland erfolgt die Umsetzung durch das NIS2-Umsetzungsgesetz (NIS2UmsuCG).</p>
+<p>Gegenüber der Vorgängerrichtlinie erweitert NIS2 den Anwendungsbereich erheblich: Statt weniger hundert kritischer Infrastrukturen in Deutschland sind nun schätzungsweise <strong>29.000 bis 40.000 deutsche Unternehmen</strong> betroffen.</p>
+
+<h2>Wen betrifft NIS2? Die Schwellenwerte im Detail</h2>
+<h3>Betroffene Sektoren</h3>
+<p>NIS2 gilt für Unternehmen in folgenden Sektoren:</p>
+<ul>
+<li>Energie (Strom, Gas, Öl, Fernwärme, Wasserstoff)</li>
+<li>Verkehr (Luft, Schiene, Wasser, Straße)</li>
+<li>Bankwesen und Finanzmarktinfrastrukturen</li>
+<li>Gesundheitswesen (Krankenhäuser, Labore, Forschung, Pharmahersteller)</li>
+<li>Trinkwasser und Abwasser</li>
+<li>Digitale Infrastruktur (Cloud, Rechenzentren, DNS, ISPs)</li>
+<li>IKT-Dienstleistungsmanagement (Managed Service Provider, MSSP)</li>
+<li>Post- und Kurierdienste, Abfallwirtschaft, Chemie, Lebensmittel, Verarbeitendes Gewerbe</li>
+</ul>
+<h3>Größenschwellen</h3>
+<p>Innerhalb der betroffenen Sektoren gilt NIS2 für Unternehmen mit mindestens:</p>
+<ul>
+<li><strong>50 Mitarbeitern</strong> (Vollzeitäquivalent) ODER</li>
+<li><strong>10 Millionen Euro Jahresumsatz</strong> und 2 Millionen Euro Jahresbilanzsumme</li>
+</ul>
+
+<h2>Pflichten für betroffene Unternehmen</h2>
+<h3>Risikomanagementmaßnahmen (Artikel 21)</h3>
+<ul>
+<li>Risikoanalyse und Sicherheitskonzept für Informationssysteme</li>
+<li>Incident Response: Konzepte für Bewältigung von Sicherheitsvorfällen</li>
+<li>Business Continuity: Backup-Management, Wiederherstellung, Krisenmanagement</li>
+<li>Lieferkettensicherheit: Sicherheitsanforderungen an Lieferanten und Dienstleister</li>
+<li>Kryptographie und Verschlüsselung</li>
+<li>Zugangskontrolle und Multi-Faktor-Authentifizierung</li>
+</ul>
+<h3>Meldepflichten bei Sicherheitsvorfällen</h3>
+<ul>
+<li><strong>24 Stunden:</strong> Erstmeldung (Frühwarnung) an das BSI</li>
+<li><strong>72 Stunden:</strong> Vollständige Meldung mit Bewertung</li>
+<li><strong>1 Monat:</strong> Abschlussbericht mit Ursachenanalyse</li>
+</ul>
+<h3>Haftung der Geschäftsführung</h3>
+<p>NIS2 stellt die persönliche Haftung von Leitungsorganen explizit klar. Geschäftsführer und Vorstände müssen die Cybersicherheitsmaßnahmen billigen und können bei Pflichtverletzungen persönlich haftbar gemacht werden.</p>
+
+<h2>Bußgelder und Handlungsempfehlungen</h2>
+<ul>
+<li><strong>Wesentliche Einrichtungen:</strong> Bis zu 10 Millionen Euro oder 2% des weltweiten Jahresumsatzes</li>
+<li><strong>Wichtige Einrichtungen:</strong> Bis zu 7 Millionen Euro oder 1,4% des Jahresumsatzes</li>
+</ul>
+<p>Konkrete Handlungsschritte für den Mittelstand:</p>
+<ul>
+<li><strong>Betroffenheit prüfen:</strong> Fällt das Unternehmen in einen der Sektoren und überschreitet die Schwellenwerte?</li>
+<li><strong>Gap-Analyse durchführen:</strong> Vergleich der bestehenden Sicherheitsmaßnahmen mit den NIS2-Anforderungen</li>
+<li><strong>Incident-Response-Plan erstellen:</strong> Klare Prozesse für Meldung und Reaktion auf Sicherheitsvorfälle</li>
+<li><strong>MFA einführen:</strong> Multi-Faktor-Authentifizierung für alle kritischen Systeme</li>
+</ul>
+<blockquote>
+<p>"NIS2 ist keine bürokratische Übung. Die Anforderungen spiegeln den Mindeststandard wider, den Unternehmen für ihre eigene Überlebensfähigkeit in der aktuellen Bedrohungslage benötigen." – Bundesamt für Sicherheit in der Informationstechnik (BSI)</p>
+</blockquote>`,
+    category: 'Compliance',
+    categoryColor: '#00D4A0',
+    categoryBg: 'rgba(0,212,160,0.08)',
+    author: 'sicherheit.ai Redaktion',
+    authorRole: 'Basierend auf: NIS2-Richtlinie (EU) 2022/2555, BSI-Lagebericht 2023, NIS2UmsuCG',
+    publishedAt: '2026-05-07',
+    readTime: 10,
+    imageGradient: 'linear-gradient(135deg, #001A14 0%, #00291F 40%, #001A14 100%)',
+    imageAlt: 'NIS2 Richtlinie Mittelstand Compliance',
+    tags: ['NIS2', 'Compliance', 'Cybersicherheit', 'KRITIS', 'Mittelstand', 'Meldepflicht'],
+    faqs: [
+      { q: 'Muss ich mein Unternehmen aktiv bei einer Behörde registrieren?', a: 'Ja, betroffene Einrichtungen müssen sich beim BSI registrieren. Das BSI stellt eine Registrierungsplattform bereit. Die Registrierungspflicht gilt unabhängig davon, ob das Unternehmen bereits nach anderen Gesetzen reguliert ist.' },
+      { q: 'Gilt NIS2 auch für Unternehmen, die IT-Dienstleistungen für betroffene Sektoren erbringen?', a: 'Ja, explizit. Managed Service Provider (MSPs) und MSSPs sind in Anhang II der NIS2-Richtlinie als "Wichtige Einrichtungen" aufgeführt und unterliegen direkt den NIS2-Pflichten.' },
+      { q: 'Was gilt als "erheblicher Sicherheitsvorfall", der gemeldet werden muss?', a: 'Ein Sicherheitsvorfall ist erheblich, wenn er schwerwiegende Betriebsstörungen verursacht oder erhebliche finanzielle Verluste zur Folge hat. Im Zweifel empfiehlt das BSI, lieber zu früh zu melden als zu spät.' },
+      { q: 'Welche Strafen drohen bei Nichteinhaltung?', a: 'Für wesentliche Einrichtungen bis zu 10 Millionen Euro oder 2% des weltweiten Jahresumsatzes. Für wichtige Einrichtungen bis zu 7 Millionen Euro oder 1,4% des Umsatzes. Leitungsorgane können persönlich haftbar gemacht werden.' },
+      { q: 'Kann ein Unternehmen NIS2-Compliance extern auslagern?', a: 'Die Verantwortung bleibt immer beim Unternehmen und seiner Geschäftsführung. Technische Umsetzung kann an qualifizierte MSSPs delegiert werden. Auslagerung befreit nicht von der Haftung.' },
+    ],
+    sources: [
+      { title: 'NIS2-Richtlinie (EU) 2022/2555 Volltext', url: 'https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32022L2555' },
+      { title: 'BSI zur NIS2-Umsetzung in Deutschland', url: 'https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-und-Zertifizierung/NIS-2/nis-2_node.html' },
+      { title: 'BSI-Lagebericht zur IT-Sicherheit 2023', url: 'https://www.bsi.bund.de/DE/Service-Navi/Presse/Pressemitteilungen/Presse2023/231026_Lagebericht.html' },
+    ],
+  },
+
+  // ── 9. Deepfakes ────────────────────────────────────────────────────────────
+  {
+    id: 'post-deepfakes-unternehmen-erkennen',
+    slug: 'deepfakes-unternehmen-erkennen',
+    title: 'Deepfakes im Unternehmenskontext: Wie CEO-Fraud durch KI eskaliert',
+    excerpt: 'Deepfake-Technologie wird aktiv für CEO-Fraud eingesetzt. In dokumentierten Fällen wurden Mitarbeiter durch KI-generierte Audio- und Videoinhalte zu Überweisungen in Millionenhöhe verleitet. So erkennen und schützen sich Unternehmen.',
+    content: `<h2>Was sind Deepfakes?</h2>
+<p>Deepfakes sind synthetische Medieninhalte (Audio, Video oder Bilder), die mithilfe von Deep-Learning-Algorithmen erstellt werden, um echte Personen täuschend echt nachzuahmen. Die Technologie basiert auf Generative Adversarial Networks (GANs) oder Diffusion Models.</p>
+<p>Laut einem Report von Deloitte aus dem Jahr 2023 haben <strong>25% der befragten Unternehmen bereits Deepfake-bezogene Sicherheitsvorfälle erlebt</strong>. Die tatsächliche Dunkelziffer dürfte höher liegen.</p>
+
+<h2>CEO-Fraud durch Deepfakes: Dokumentierte Fälle</h2>
+<p>Der bislang bekannteste dokumentierte Fall ereignete sich 2019: Ein britischer Energieversorger überwies 220.000 Euro an Cyberkriminelle, nachdem ein Mitarbeiter einen Anruf vom vermeintlichen Vorstandsvorsitzenden des deutschen Mutterkonzerns erhalten hatte. Die Stimme war mittels KI geklont worden.</p>
+<p>2023 wurde in Hongkong ein Mitarbeiter eines Finanzunternehmens durch ein gefälschtes Video-Konferenzgespräch dazu gebracht, umgerechnet 25 Millionen US-Dollar zu überweisen. Die Angreifer hatten mehrere Kollegen des Mitarbeiters durch Deepfake-Avatare simuliert.</p>
+
+<h2>Wie man Deepfakes erkennt</h2>
+<h3>Visuelle Artefakte in Video-Deepfakes</h3>
+<ul>
+<li><strong>Gesichtsränder:</strong> Unnatürliche Übergänge zwischen dem geklonten Gesicht und dem restlichen Kopf, besonders bei Bewegung</li>
+<li><strong>Augen:</strong> Unnatürliches Blinzeln, starre oder fehlende Lichtreflexe in den Pupillen</li>
+<li><strong>Haare:</strong> Feinstränge am Rand des Gesichts werden von KI-Systemen oft schlecht gerendert</li>
+<li><strong>Beleuchtung:</strong> Inkonsistente Schatten zwischen Gesicht und Umgebung</li>
+<li><strong>Lippensynchronisation:</strong> Lippenbewegungen und Sprache stimmen nicht exakt überein</li>
+</ul>
+<h3>Artefakte in Audio-Deepfakes</h3>
+<ul>
+<li>Unnatürliche Pausen oder Atemgeräusche an falschen Stellen</li>
+<li>Gleichmäßige, zu "saubere" Klangqualität ohne Hintergrundgeräusche</li>
+<li>Metall-ähnlicher oder leicht roboterhafter Klang bei emotionalen Äußerungen</li>
+</ul>
+<h3>Technische Erkennungsmethoden</h3>
+<ul>
+<li><strong>Deepfake-Erkennungstools:</strong> Microsoft Video Authenticator, Sensity AI, Intel FakeCatcher</li>
+<li><strong>Echtzeit-Verifizierung:</strong> Bei Videoanrufen unerwartete Aktionen anfordern, auf die KI-Systeme nicht in Echtzeit reagieren können</li>
+</ul>
+
+<h2>Schutzmaßnahmen für Unternehmen</h2>
+<ul>
+<li><strong>Verbales Codewort-System:</strong> Führungskräfte und Mitarbeiter vereinbaren ein nicht-öffentliches Codewort für ungewöhnliche Anfragen.</li>
+<li><strong>Dual-Control-Prinzip bei Zahlungen:</strong> Keine Zahlung auf Basis eines einzigen Kommunikationskanals. Jede außergewöhnliche Überweisung muss durch einen zweiten, unabhängigen Kanal bestätigt werden.</li>
+<li><strong>Awareness-Schulungen:</strong> Mitarbeiter müssen wissen, dass Deepfake-CEO-Fraud existiert und wie Angriffsszenarien ablaufen.</li>
+<li><strong>Verifizierungsprotokoll für ungewöhnliche Anfragen:</strong> Klarer Prozess für außergewöhnliche Anfragen von Führungskräften.</li>
+<li><strong>Beschränkung öffentlicher Audio- und Videoinhalte:</strong> Je weniger öffentliches Audiomaterial von Führungskräften verfügbar ist, desto schwieriger ist die Erstellung überzeugender Stimmklone.</li>
+</ul>
+<blockquote>
+<p>"Die beste Verteidigung gegen Deepfake-Betrug ist nicht Technologie, sondern Prozess. Ein Vier-Augen-Prinzip bei Überweisungen schlägt jeden Deepfake-Detektor." – Europol Cybercrime Centre (EC3)</p>
+</blockquote>`,
+    category: 'KI-Bedrohung',
+    categoryColor: '#FFB800',
+    categoryBg: 'rgba(255,184,0,0.08)',
+    author: 'sicherheit.ai Redaktion',
+    authorRole: 'Basierend auf: Deloitte Deepfake Report 2023, Europol EC3, dokumentierte CEO-Fraud-Fälle',
+    publishedAt: '2026-05-06',
+    readTime: 9,
+    imageGradient: 'linear-gradient(135deg, #1A1200 0%, #2D1F00 40%, #1A1200 100%)',
+    imageAlt: 'Deepfake CEO-Fraud Unternehmensschutz',
+    tags: ['Deepfakes', 'CEO-Fraud', 'KI-Betrug', 'Social Engineering', 'Audio-Deepfake', 'Video-Deepfake'],
+    faqs: [
+      { q: 'Wie viel Audiomaterial wird benötigt, um eine Stimme zu klonen?', a: 'Moderne Sprachkloning-Dienste wie ElevenLabs benötigen bereits drei bis fünf Sekunden qualitatives Audiomaterial für eine grundlegende Stimmkopie. Öffentliche Interviews, Unternehmensvideos oder LinkedIn-Videos von Führungskräften liefern Angreifern ausreichend Material.' },
+      { q: 'Kann ich einen Deepfake in Echtzeit erkennen?', a: 'Echtzeit-Deepfake-Erkennung ist technisch anspruchsvoll und fehleranfällig. Zuverlässiger sind strukturelle Verifizierungsmaßnahmen: unerwartete Aktionen anfordern, ein Codewort abfragen oder die Person über einen bekannten alternativen Kanal kontaktieren.' },
+      { q: 'Welche Branchen sind besonders häufig Ziele von Deepfake-Angriffen?', a: 'Finanzdienstleistungen, Versicherungen und Unternehmen mit häufigen internationalen Überweisungen sind primäre Ziele. CEO-Fraud trifft statistisch am häufigsten mittelgroße Unternehmen mit weniger strikten Zahlungsprozessen als Großkonzerne.' },
+      { q: 'Sind Versicherungen gegen Deepfake-Betrug verfügbar?', a: 'Cyberpolicen decken zunehmend auch Social-Engineering-Angriffe einschließlich CEO-Fraud ab. Die Deckung ist jedoch oft an Voraussetzungen geknüpft: Das Unternehmen muss Schutzmaßnahmen wie Dual-Control-Prinzipien und Mitarbeiterschulungen nachweisen.' },
+      { q: 'Was sollte ein Mitarbeiter tun, der vermutet, einem Deepfake ausgesetzt worden zu sein?', a: 'Keine Transaktion durchführen und den Vorfall sofort der IT-Abteilung melden. Falls eine Überweisung bereits veranlasst wurde: sofort die Hausbank kontaktieren, um den Transfer zu stoppen, und Anzeige bei der Polizei erstatten.' },
+    ],
+    sources: [
+      { title: 'Deloitte Global Deepfake Survey 2023', url: 'https://www2.deloitte.com/us/en/insights/industry/financial-services/financial-services-industry-predictions/2024/deepfake-banking-fraud.html' },
+      { title: 'Europol Deepfake Threat Assessment', url: 'https://www.europol.europa.eu/publications-events/main-reports/facing-reality-law-enforcement-and-challenge-of-deepfakes' },
+      { title: 'Intel FakeCatcher Deepfake Detection', url: 'https://www.intel.com/content/www/us/en/research/ie-lab/real-time-deepfake-detection.html' },
+    ],
+  },
+
+  // ── 10. RaaS erklärt ────────────────────────────────────────────────────────
+  {
+    id: 'post-ransomware-as-a-service-erklaert',
+    slug: 'ransomware-as-a-service-erklaert',
+    title: 'Ransomware-as-a-Service: Wie kriminelle Plattformen Cyberangriffe industrialisieren',
+    excerpt: 'Ransomware-as-a-Service (RaaS) hat Cyberangriffe demokratisiert. LockBit, BlackCat/ALPHV und Cl0p betreiben Affiliate-Modelle wie SaaS-Unternehmen. Die durchschnittliche Lösegeldzahlung lag 2023 bei 1,54 Millionen US-Dollar laut Sophos.',
+    content: `<h2>Was ist Ransomware-as-a-Service?</h2>
+<p>Ransomware-as-a-Service (RaaS) ist ein Geschäftsmodell aus der Cyberkriminalität, bei dem spezialisierte Entwickler vollständige Ransomware-Plattformen inklusive Schadsoftware, Command-and-Control-Infrastruktur und Zahlungsabwicklung entwickeln und diese als Service an Partnerangreifer (Affiliates) vermieten.</p>
+<p>Das Grundprinzip: Affiliates erhalten Zugang zur RaaS-Plattform und führen eigenständig Angriffe durch. Nach einer erfolgreichen Zahlung behalten die Core Developers typischerweise 15 bis 30%, der Rest geht an den Affiliate.</p>
+
+<h2>Die großen RaaS-Plattformen: LockBit, BlackCat und Cl0p</h2>
+<h3>LockBit</h3>
+<p>LockBit war bis zu einer koordinierten Behördenoperation im Februar 2024 die produktivste RaaS-Gruppe weltweit. Das System bietet Affiliates ein Dashboard mit Angriffsverwaltung, Lösegeldforderungs-Templates und Verhandlungsportal. LockBit entwickelte das "triple extortion"-Modell: Verschlüsselung, Datendiebstahl und DDoS-Angriffe als dreifacher Druckmechanismus.</p>
+<h3>BlackCat (ALPHV)</h3>
+<p>ALPHV war eine der technisch fortschrittlichsten RaaS-Gruppen. Die Ransomware war in Rust programmiert und ermöglichte plattformübergreifende Angriffe auf Windows, Linux und VMware ESXi. Im Dezember 2023 wurde die Infrastruktur durch das FBI beschlagnahmt.</p>
+<h3>Cl0p</h3>
+<p>Cl0p unterscheidet sich durch einen Fokus auf Massenkampagnen via Zero-Day-Exploits. 2023 nutzte die Gruppe eine Schwachstelle in MOVEit-Software aus und stahl Daten von über 2.500 Organisationen weltweit.</p>
+
+<h2>Warum RaaS gefährlicher ist als traditionelle Ransomware</h2>
+<ul>
+<li><strong>Skalierung:</strong> Hunderte von Affiliates können gleichzeitig auf unterschiedliche Ziele angesetzt werden</li>
+<li><strong>Spezialisierung:</strong> Core Developers konzentrieren sich auf Softwareentwicklung, Affiliates auf Initial Access</li>
+<li><strong>Professionalisierung:</strong> RaaS-Gruppen bieten Opfern tatsächlich funktionierenden Entschlüsselungs-Support, um ihre "Reputation" zu wahren</li>
+<li><strong>Resilienz:</strong> Selbst wenn Core Developers verhaftet werden, können Affiliates zu einer anderen Plattform wechseln</li>
+</ul>
+<p>Laut Sophos State of Ransomware 2023 betrug die <strong>durchschnittliche Lösegeldzahlung 1,54 Millionen US-Dollar</strong>, ein Anstieg von fast 100% gegenüber 2022.</p>
+
+<h2>Schutzmaßnahmen gegen RaaS-Angriffe</h2>
+<h3>Technische Maßnahmen</h3>
+<ul>
+<li><strong>Offline-Backups nach der 3-2-1-Regel:</strong> 3 Kopien, 2 verschiedene Medien, 1 Kopie offline oder air-gapped</li>
+<li><strong>Patch-Management:</strong> Konsequente Aktualisierung aller Systeme, besonders VPN-Gateways und RDP-Zugänge</li>
+<li><strong>Multi-Faktor-Authentifizierung:</strong> MFA auf allen extern erreichbaren Diensten</li>
+<li><strong>Netzwerksegmentierung:</strong> Lateral Movement nach einem initialen Einbruch verhindern</li>
+<li><strong>EDR-Lösung:</strong> Verhaltensbasierte Erkennung von Verschlüsselungsaktivitäten</li>
+</ul>
+<h3>Organisatorische Maßnahmen</h3>
+<ul>
+<li><strong>Incident Response Plan:</strong> Klarer, schriftlich fixierter Plan für den Ernstfall</li>
+<li><strong>Darknet-Monitoring:</strong> Überwachung von Unternehmensanmeldedaten auf Darknet-Marktplätzen</li>
+<li><strong>Lösegeldzahlung als letztes Mittel:</strong> Das BSI empfiehlt, vor einer Zahlung immer Kontakt mit Strafverfolgungsbehörden aufzunehmen</li>
+</ul>
+<blockquote>
+<p>"Ransomware-Gruppen sind keine chaotischen Hacker mehr. Sie sind strukturierte Unternehmen mit HR-Abteilungen, Kundensupport und Qualitätssicherung. Die Verteidigung muss genauso professionell sein." – Sophos Threat Intelligence, 2023</p>
+</blockquote>`,
+    category: 'Ransomware',
+    categoryColor: '#FF7A00',
+    categoryBg: 'rgba(255,122,0,0.08)',
+    author: 'sicherheit.ai Redaktion',
+    authorRole: 'Basierend auf: Sophos State of Ransomware 2023, Europol IOCTA 2023, FBI Cybercrime Report 2023',
+    publishedAt: '2026-05-05',
+    readTime: 12,
+    imageGradient: 'linear-gradient(135deg, #1A0800 0%, #2D1200 40%, #1A0800 100%)',
+    imageAlt: 'Ransomware-as-a-Service Affiliate-Modell Visualisierung',
+    tags: ['Ransomware', 'RaaS', 'LockBit', 'BlackCat', 'Cl0p', 'Cybercrime', 'Backup'],
+    faqs: [
+      { q: 'Sollte man Lösegeld zahlen?', a: 'Das BSI und Strafverfolgungsbehörden raten grundsätzlich von Lösegeldzahlungen ab, da sie kriminelle Infrastruktur finanzieren und keine Garantie für vollständige Datenwiederherstellung bieten. Laut Sophos erhält nur 8% der Unternehmen, die zahlen, alle Daten vollständig zurück.' },
+      { q: 'Wie gelangen Ransomware-Gruppen initial in Unternehmensnetzwerke?', a: 'Die häufigsten Initial-Access-Vektoren laut Sophos 2023: kompromittierte Zugangsdaten für VPN oder RDP (33%), ausgenutzte Softwareschwachstellen (36%), Phishing-Mails (18%). Initial Access Broker kaufen oder stehlen Zugangsdaten und verkaufen sie im Darknet an RaaS-Affiliates.' },
+      { q: 'Was ist "Double Extortion" bei Ransomware?', a: 'Double Extortion ist eine Taktik, bei der Angreifer vor der Verschlüsselung Daten stehlen und mit deren Veröffentlichung drohen. Unternehmen mit guten Backups können so trotzdem zur Zahlung genötigt werden, da die Veröffentlichung sensitiver Kundendaten zu DSGVO-Bußgeldern führen würde.' },
+      { q: 'Sind kleine Unternehmen auch Ziele von RaaS-Gruppen?', a: 'Ja, explizit. Mittelständische Unternehmen mit 50 bis 500 Mitarbeitern sind bevorzugte Ziele: Sie haben oft weniger ausgereifte Sicherheitsstrukturen als Großkonzerne, aber ausreichend Umsatz für Lösegelder im sechs- bis siebenstelligen Bereich.' },
+      { q: 'Was ist zu tun, unmittelbar nachdem ein Ransomware-Angriff entdeckt wurde?', a: 'Sofortige Isolation betroffener Systeme vom Netzwerk (Netzwerkkabel trennen). Keine Systeme ausschalten, da forensische Spuren im RAM verloren gehen. IT-Sicherheitsteam alarmieren, BSI und Polizei kontaktieren, Backup-Integrität prüfen.' },
+    ],
+    sources: [
+      { title: 'Sophos State of Ransomware Report 2023', url: 'https://www.sophos.com/en-us/content/state-of-ransomware' },
+      { title: 'Europol Internet Organised Crime Threat Assessment (IOCTA) 2023', url: 'https://www.europol.europa.eu/publications-events/main-reports/iocta-report' },
+      { title: 'BSI-Empfehlungen zu Ransomware', url: 'https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Cyber-Sicherheitslage/Analysen-und-Prognosen/Ransomware/ransomware_node.html' },
+    ],
+  },
+
+  // ── 5 (old). Ransomware-as-a-Service ───────────────────────────────────────────────
   {
     id: '5',
     slug: 'ransomware-as-a-service-2024',
