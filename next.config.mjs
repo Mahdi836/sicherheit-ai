@@ -12,18 +12,6 @@ const nextConfig = {
     minimumCacheTTL: 31536000,
   },
 
-  async redirects() {
-    return [
-      // www → non-www (permanent 301)
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'www.sicherheit.ai' }],
-        destination: 'https://sicherheit.ai/:path*',
-        permanent: true,
-      },
-    ];
-  },
-
   async headers() {
     return [
       // Cache static assets aggressively
