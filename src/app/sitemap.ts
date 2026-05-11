@@ -33,6 +33,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     },
+    {
+      url: `${BASE_URL}/${locale}/ai-act`,
+      lastModified: now,
+      changeFrequency: 'weekly' as const,
+      priority: 0.85,
+    },
+    {
+      url: `${BASE_URL}/${locale}/ueber-uns`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/${locale}/kontakt`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.55,
+    },
   ]);
 
   const blogPages = LOCALES.flatMap(locale =>

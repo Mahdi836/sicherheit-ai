@@ -54,7 +54,7 @@ export function autolinkGlossary(html: string, locale: string = 'de'): string {
       if (re.test(text)) {
         linkedIds.add(entry.id);
         text = text.replace(re, (match) =>
-          `<a href="/${locale}/glossar#term-${entry.id}" ` +
+          `<a href="/${locale}/glossar/${entry.id}" ` +
           `class="glossar-autolink" ` +
           `title="Glossar: ${entry.display}" ` +
           `style="color:var(--cyan);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;text-decoration-color:currentColor;cursor:help;"` +

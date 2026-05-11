@@ -10,11 +10,12 @@ import JsonLd, { articleSchema, faqSchema } from '@/components/JsonLd';
 import Link from 'next/link';
 import { autolinkGlossary } from '@/lib/autolink';
 
-export const revalidate = 3600;
+export const dynamic = 'force-static';
 
 export async function generateStaticParams() {
+  const locales = ['de', 'en'];
   const posts = await getPosts();
-  return posts.map(p => ({ slug: p.slug }));
+  return locales.flatMap(locale => posts.map(p => ({ locale, slug: p.slug })));
 }
 
 const BASE_URL = 'https://sicherheit.ai';

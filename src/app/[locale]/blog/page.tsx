@@ -8,7 +8,7 @@ export function generateStaticParams() {
   return [{ locale: 'de' }, { locale: 'en' }];
 }
 
-export const revalidate = 3600;
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: 'Blog — KI-Sicherheit & Cybersecurity News | sicherheit.ai',
