@@ -18,6 +18,14 @@ interface HudCard {
   delay: number;
 }
 
+function isSlowDevice(): boolean {
+  if (typeof navigator === 'undefined') return false;
+  const conn = (navigator as unknown as { connection?: { effectiveType?: string; saveData?: boolean } }).connection;
+  if (conn?.saveData) return true;
+  if (conn?.effectiveType && ['slow-2g', '2g', '3g'].includes(conn.effectiveType)) return true;
+  return false;
+}
+
 export default function Hero() {
   const t = useTranslations('hero');
   const hudT = useTranslations('hud');
@@ -26,6 +34,7 @@ export default function Hero() {
   const [phraseIdx, setPhraseIdx] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [charIdx, setCharIdx] = useState(0);
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
 
   const phrases = [t('phrases.0'), t('phrases.1'), t('phrases.2')];
 
@@ -52,6 +61,23 @@ export default function Hero() {
     return () => clearTimeout(timer);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [charIdx, isDeleting, phraseIdx]);
+
+  // Lazy-load video after page is interactive — skip on slow connections
+  useEffect(() => {
+    const src = theme === 'dark' ? '/hero-bg.mp4' : '/hero-bg-light.mp4';
+    if (isSlowDevice()) {
+      // On slow connections: load video only after 4 seconds
+      const t = setTimeout(() => setVideoSrc(src), 4000);
+      return () => clearTimeout(t);
+    }
+    // Fast connections: load after browser is idle (or 800ms fallback)
+    if ('requestIdleCallback' in window) {
+      const id = requestIdleCallback(() => setVideoSrc(src), { timeout: 800 });
+      return () => cancelIdleCallback(id);
+    }
+    const t = setTimeout(() => setVideoSrc(src), 800);
+    return () => clearTimeout(t);
+  }, [theme]);
 
   // Scroll progress
   useEffect(() => {
@@ -112,28 +138,35 @@ export default function Hero() {
       alignItems: 'center',
       justifyContent: 'flex-start',
     }}>
-      {/* Video background — dark and light mode */}
-      <video
-        key={theme}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="none"
-        style={{
-          position: 'absolute',
-          inset: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          objectPosition: 'center right',
-          zIndex: 0,
-          opacity: theme === 'dark' ? 1 : 0.85,
-          transition: 'opacity 0.5s',
-        }}
-      >
-        <source src={theme === 'dark' ? '/hero-bg.mp4' : '/hero-bg-light.mp4'} type="video/mp4" />
-      </video>
+      {/* Static gradient fallback — always visible, video fades in on top */}
+      <div style={{
+        position: 'absolute', inset: 0, zIndex: 0,
+        background: theme === 'dark'
+          ? 'radial-gradient(ellipse 80% 60% at 70% 50%, #0a1628 0%, #060B18 60%, #060B18 100%)'
+          : 'radial-gradient(ellipse 80% 60% at 70% 50%, #c8d8f0 0%, #e8f0ff 60%, #f0f4ff 100%)',
+      }} />
+
+      {/* Video background — lazy loaded after page is interactive */}
+      {videoSrc && (
+        <video
+          key={videoSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          style={{
+            position: 'absolute', inset: 0,
+            width: '100%', height: '100%',
+            objectFit: 'cover', objectPosition: 'center right',
+            zIndex: 0,
+            opacity: theme === 'dark' ? 1 : 0.85,
+            transition: 'opacity 1.2s ease',
+          }}
+        >
+          <source src={videoSrc} type="video/mp4" />
+        </video>
+      )}
 
       {/* Gradient overlay — left side dark for text legibility */}
       <div style={{
