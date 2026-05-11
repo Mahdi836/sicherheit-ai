@@ -13,6 +13,7 @@ export interface Post {
   publishedAt: string;
   readTime: number;
   imageGradient: string;
+  imageSrc?: string;
   imageAlt?: string;
   badge?: string;
   badgeColor?: string;
@@ -799,6 +800,7 @@ POST /guestaccess.aspx HTTP/1.1
     publishedAt: '2026-05-06',
     readTime: 9,
     imageGradient: 'linear-gradient(135deg, #1A1200 0%, #2D1F00 40%, #1A1200 100%)',
+    imageSrc: '/blog/deepfakes-ceo-fraud.jpg',
     imageAlt: 'Deepfake CEO-Fraud Unternehmensschutz',
     tags: ['Deepfakes', 'CEO-Fraud', 'KI-Betrug', 'Social Engineering', 'Audio-Deepfake', 'Video-Deepfake'],
     faqs: [

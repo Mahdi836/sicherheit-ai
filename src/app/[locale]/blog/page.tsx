@@ -58,14 +58,31 @@ export default async function BlogPage({
                   display: 'flex',
                   flexDirection: 'column',
                 }}>
-                  {/* Gradient strip */}
-                  <div style={{
-                    height: '3px',
-                    borderRadius: '2px',
-                    background: article.imageGradient,
-                    marginBottom: '20px',
-                    opacity: 0.8,
-                  }} />
+                  {/* Image or gradient strip */}
+                  {article.imageSrc ? (
+                    <div style={{
+                      height: '180px',
+                      borderRadius: '8px',
+                      overflow: 'hidden',
+                      marginBottom: '20px',
+                      background: article.imageGradient,
+                    }}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={article.imageSrc}
+                        alt={article.imageAlt ?? article.title}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top' }}
+                      />
+                    </div>
+                  ) : (
+                    <div style={{
+                      height: '3px',
+                      borderRadius: '2px',
+                      background: article.imageGradient,
+                      marginBottom: '20px',
+                      opacity: 0.8,
+                    }} />
+                  )}
 
                   <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' }}>
                     <span style={{ padding: '3px 10px', borderRadius: '4px', fontSize: '11px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', background: article.categoryBg, color: article.categoryColor }}>

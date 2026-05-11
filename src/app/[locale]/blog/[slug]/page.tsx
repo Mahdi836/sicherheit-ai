@@ -119,19 +119,33 @@ export default async function BlogPostPage({
             background: post.imageGradient,
           }}
         >
+          {/* Real image — shown when imageSrc is set */}
+          {post.imageSrc && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={post.imageSrc}
+              alt={post.imageAlt ?? post.title}
+              style={{
+                position: 'absolute', inset: 0,
+                width: '100%', height: '100%',
+                objectFit: 'cover', objectPosition: 'center top',
+                zIndex: 0,
+              }}
+            />
+          )}
           {/* Scan-line overlay */}
           <div style={{
-            position: 'absolute', inset: 0,
+            position: 'absolute', inset: 0, zIndex: 1,
             backgroundImage: 'repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 4px)',
             pointerEvents: 'none',
           }} />
           {/* Bottom gradient fade */}
           <div style={{
-            position: 'absolute', inset: 0,
+            position: 'absolute', inset: 0, zIndex: 1,
             background: 'linear-gradient(to top, rgba(6,11,24,0.98) 0%, rgba(6,11,24,0.4) 55%, transparent 100%)',
           }} />
 
-          <div className="r-wrap" style={{ position: 'relative', zIndex: 2, paddingBottom: '56px', paddingTop: '80px', width: '100%' }}>
+          <div className="r-wrap" style={{ position: 'relative', zIndex: 2, paddingBottom: '56px', paddingTop: '80px', width: '100%', pointerEvents: 'auto' }}>
             {/* Breadcrumb */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '24px' }}>
               <Link href={`/${params.locale}/blog`} style={{ fontFamily: 'var(--mono)', fontSize: '11px', color: 'rgba(232,237,248,0.45)', textDecoration: 'none', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
